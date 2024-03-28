@@ -10,7 +10,7 @@ export default function Home() {
             <h2 className="text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-l from-pink-300 to-pink-500 sm:text-5xl z-10 py-8">
               Captivating. Bold. Unapologetically Unique.
             </h2>
-            <p className="text-sm sm:text-base leading-8 text-rose-400 sm:max-w-md lg:max-w-none">
+            <p className="text-sm sm:text-base leading-8 text-rose-300 sm:max-w-md lg:max-w-none">
               Beauty meets art, and stories unfold through the lens of fashion
               and lifestyle. Every snapshot tells a story, every look inspires a
               trend, and every moment is an invitation to dream bigger.

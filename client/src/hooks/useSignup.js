@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "./useAuthContext";
 
 export const useSignup = () => {
@@ -21,15 +21,22 @@ export const useSignup = () => {
 
     if (!res.ok) {
       setSignupLoading(false);
-      setSignupError(data.error);
-    }
-    if (res.ok) {
+      setSignupLoading(data.error);
+    } else {
       localStorage.setItem("user", JSON.stringify(data));
-      dispatch({ type: "LOGIN", payload: data });
+      localStorage.setItem("accessToken", data.accessToken);
+      localStorage.setItem("refreshToken", data.refreshToken);
+      dispatch({
+        type: "LOGIN",
+        payload: {
+          user: data, // Explicitly setting the user object
+          accessToken: data.accessToken, // Explicitly setting the accessToken
+        },
+      });
       setSignupLoading(false);
-      navigate('/');
+      navigate("/");
     }
   };
 
-  return { signupError, setSignupError, signupLoading, signup };
+  return { signupError, signupLoading, signup };
 };

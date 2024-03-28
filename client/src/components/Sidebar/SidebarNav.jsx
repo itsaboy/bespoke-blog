@@ -1,6 +1,4 @@
-import { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { AppContext } from "../../context/AppContext";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useLogout } from "../../hooks/useLogout";
 import { navData } from "../../data/navData";

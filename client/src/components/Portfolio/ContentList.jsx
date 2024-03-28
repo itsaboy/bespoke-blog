@@ -29,7 +29,7 @@ export default function ContentList() {
         <h2 className="p-2 text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-l from-pink-300 to-pink-500 sm:text-4xl">
           Beauty & Grace
         </h2>
-        <p className="p-2 mt-6 text-lg leading-8 text-rose-400">
+        <p className="p-2 mt-6 text-lg leading-8 text-rose-300">
           Dive into the visual journey of [Model's Name] — where each frame is a
           story, each look a chapter in a vast, unfolding narrative. Welcome to
           a place where beauty and storytelling intersect to create something

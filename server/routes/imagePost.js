@@ -5,15 +5,22 @@ import {
   getOneImagePost,
   deleteImagePost,
 } from "../controllers/imagePostController.js";
+import { userCheck } from "../middleware/userCheck.js";
 import multer from "multer";
 
 export const imagePostRoutes = express.Router();
+
 const upload = multer({ storage: multer.memoryStorage() });
 
-imagePostRoutes.post("/create", upload.array("image"), createImagePost);
+imagePostRoutes.post(
+  "/create",
+  userCheck,
+  upload.array("image"),
+  createImagePost
+);
 
 imagePostRoutes.get("/get", getImagePosts);
 
 imagePostRoutes.get("/get/:postId", getOneImagePost);
 
-imagePostRoutes.delete("/delete/:postId", deleteImagePost);
+imagePostRoutes.delete("/delete/:postId", userCheck, deleteImagePost);

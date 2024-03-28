@@ -10,12 +10,10 @@ export default function NewImage() {
   const [submissionMsg, setSubmissionMsg] = useState(null);
 
   const handleFileChange = (event) => {
-    const files = event.target.files;
+    const files = Array.from(event.target.files).slice(0, 12);
     setImages(files);
 
-    const previewUrls = Array.from(files).map((file) =>
-      URL.createObjectURL(file)
-    );
+    const previewUrls = files.map((file) => URL.createObjectURL(file));
     setImagePreviews(previewUrls);
   };
 
@@ -31,6 +29,9 @@ export default function NewImage() {
       const response = await fetch("/api/imagePost/create", {
         method: "POST",
         body: formData,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("user")}`,
+        },
       });
       const result = await response.json();
       setSubmissionMsg(result.message || "Image post uploaded successfully!");
@@ -73,7 +74,7 @@ export default function NewImage() {
                   id="title"
                   name="title"
                   rows={1}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md px-2 py-1.5 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6 shadow-neon shadow-pink-600/80 border-2 border-pink-400"
                   onChange={(e) => setTitle(e.target.value)}
                   value={title}
                   required={true}
@@ -93,7 +94,7 @@ export default function NewImage() {
                   id="location"
                   name="location"
                   rows={1}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md px-2 py-1.5 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6 shadow-neon shadow-pink-600/80 border-2 border-pink-400"
                   onChange={(e) => setLocation(e.target.value)}
                   value={location}
                   required={true}
@@ -104,7 +105,7 @@ export default function NewImage() {
             <div className="col-span-full">
               <label
                 htmlFor="image-input"
-                className="mb-3 block text-sm font-medium leading-6 text-rose-200"
+                className="mb-3 block opacity-0 text-sm font-medium leading-6 text-rose-200"
               >
                 Images
               </label>
@@ -131,7 +132,7 @@ export default function NewImage() {
                   />
                   <PhotoIcon className="mx-auto h-12 w-12 text-gray-400" />
                   <span className="mt-2 block text-sm font-semibold text-pink-200">
-                    Upload Images
+                    Upload Images (max 12)
                   </span>
                 </div>
               )}

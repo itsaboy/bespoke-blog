@@ -8,8 +8,8 @@ export default function Header() {
   return (
     <header className="p-6 bg-gradient-to-r from-pink-400 to-pink-600 border-b-2 border-pink-500 shadow-neon shadow-pink-500/60">
       <div className="flex justify-between items-center max-w-screen-2xl mx-auto">
-        <h1 className="relative p-2 text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-rose-800">
-          Placeholder h1
+        <h1 className="relative p-2 text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-rose-800">
+          Siam Silhouette
         </h1>
         {!sidebarOpen && (
           <button

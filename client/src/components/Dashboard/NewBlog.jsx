@@ -31,6 +31,9 @@ export default function NewBlog() {
       const response = await fetch("/api/blogPost/create", {
         method: "POST",
         body: formData,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("user")}`,
+        },
       });
       const result = await response.json();
       setSubmissionMsg(result.message || "Blog post uploaded successfully!");
@@ -73,7 +76,7 @@ export default function NewBlog() {
                   id="about"
                   name="about"
                   rows={1}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md px-2 py-1.5 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6 shadow-neon shadow-pink-600/80 border-2 border-pink-400"
                   onChange={(e) => setTitle(e.target.value)}
                   value={title}
                 />
@@ -92,7 +95,7 @@ export default function NewBlog() {
                   id="about"
                   name="about"
                   rows={12}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md px-2 py-1.5 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6 shadow-neon shadow-pink-600/80 border-2 border-pink-400"
                   onChange={(e) => setBody(e.target.value)}
                   value={body}
                 />
@@ -102,9 +105,9 @@ export default function NewBlog() {
             <div className="col-span-full">
               <label
                 htmlFor="image-input"
-                className="mb-3 block text-sm font-medium leading-6 text-rose-200"
+                className="mb-3 block opacity-0 text-sm font-medium leading-6 text-rose-200"
               >
-                Images
+                Image
               </label>
               {imagePreview.length > 0 ? (
                 <div className="grid grid-cols-4 gap-2">
@@ -129,7 +132,7 @@ export default function NewBlog() {
                   />
                   <PhotoIcon className="mx-auto h-12 w-12 text-gray-400" />
                   <span className="mt-2 block text-sm font-semibold text-pink-200">
-                    Upload Images
+                    Upload Image
                   </span>
                 </div>
               )}

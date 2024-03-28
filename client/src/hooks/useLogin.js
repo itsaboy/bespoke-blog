@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "./useAuthContext";
 
 export const useLogin = () => {
@@ -22,16 +22,21 @@ export const useLogin = () => {
     if (!res.ok) {
       setLoginLoading(false);
       setLoginError(data.error);
-      console.log(data.error);
-    }
-    if (res.ok) {
-      console.log(data);
+    } else {
       localStorage.setItem("user", JSON.stringify(data));
-      dispatch({ type: "LOGIN", payload: data });
+      localStorage.setItem("accessToken", data.accessToken);
+      localStorage.setItem("refreshToken", data.refreshToken);
+      dispatch({
+        type: "LOGIN",
+        payload: {
+          user: data,
+          accessToken: data.accessToken,
+        },
+      });
       setLoginLoading(false);
-      navigate('/');
+      navigate("/");
     }
   };
 
-  return { loginError, setLoginError, loginLoading, login };
+  return { loginError, loginLoading, login };
 };

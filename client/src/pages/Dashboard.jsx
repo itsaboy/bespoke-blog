@@ -7,34 +7,35 @@ import NewImage from "../components/Dashboard/NewImage";
 import DeleteBlog from "../components/Dashboard/DeleteBlog";
 import DeleteImage from "../components/Dashboard/DeleteImage";
 import logoutIcon from "../assets/icons/logout.svg";
+import dayjs from "dayjs";
 
 const items = [
   {
     title: "Create a Blog Post",
     description: "Another to-do system you’ll try but eventually give up on.",
     icon: PlusIcon,
-    background: "bg-pink-500",
+    background: "bg-gradient-to-r from-pink-500 to-pink-700 border-b-2 border-pink-500 border-2",
     action: "new blog",
   },
   {
     title: "Create an Image Post",
     description: "Stay on top of your deadlines, or don’t — it’s up to you.",
     icon: PlusIcon,
-    background: "bg-pink-500",
+    background: "bg-gradient-to-r from-pink-500 to-pink-700 border-b-2 border-pink-500 border-2",
     action: "new image",
   },
   {
     title: "Delete a Blog Post",
     description: "Great for mood boards and inspiration.",
     icon: MinusIcon,
-    background: "bg-rose-500",
+    background: "bg-gradient-to-r from-rose-500 to-rose-700 border-b-2 border-rose-500 border-2",
     action: "delete blog",
   },
   {
     title: "Delete an Image Post",
     description: "Track tasks in different stages of your project.",
     icon: MinusIcon,
-    background: "bg-rose-500",
+    background: "bg-gradient-to-r from-rose-500 to-rose-700 border-b-2 border-rose-500 border-2",
     action: "delete image",
   },
 ];
@@ -58,8 +59,7 @@ export default function Doashboard() {
             Welcome back {user.username}!
           </h2>
           <p className="mt-1 text-sm text-rose-300">
-            You haven’t created a project yet. Get started by selecting a
-            template or start from an empty project.
+            {dayjs().format("dddd, MMMM D, YYYY")}
           </p>
           <ul
             role="list"
@@ -115,7 +115,7 @@ export default function Doashboard() {
               className="px-4 sm:px-10 py-2 bg-gradient-to-l from-pink-200 to-pink-400 border-2 border-pink-400 rounded-2xl shadow-neon shadow-pink-400/60 hover:bg-gradient-to-r hover:shadow-neon hover:shadow-pink-200/60 hover:border-pink-200"
               onClick={() => logout()}
             >
-              <div className="flex sm:flex-row justify-between items-center text-sm sm:text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-rose-800">
+              <div className="flex justify-between items-center text-sm sm:text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-rose-800">
                 Logout
                 <img
                   src={logoutIcon}

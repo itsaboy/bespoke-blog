@@ -12,12 +12,12 @@ export default function About() {
             <h2 className="text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-l from-pink-300 to-pink-500 sm:text-4xl">
               Not just a model...
             </h2>
-            <p className="mt-6 text-xl leading-8 text-rose-400">
+            <p className="mt-6 text-xl leading-8 text-rose-300">
               ...but a beacon of self-expression. With roots in Thailand, she has captivated
               audiences worldwide with her unique blend of elegance, strength,
               and creativity.
             </p>
-            <p className="mt-6 text-lg leading-7 text-pink-400">
+            <p className="mt-6 text-lg leading-7 text-pink-300">
               Her journey is one of passion, dedication, and a
               relentless pursuit of artistry that resonates with a diverse and
               growing audience.

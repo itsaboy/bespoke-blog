@@ -28,11 +28,15 @@ export default function Blog() {
     <div className="mx-auto mt-16 max-w-7xl px-6 sm:mt-24 lg:px-8">
       <div className="mx-auto max-w-2xl lg:mx-0">
         <h2 className="p-2 text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-l from-pink-300 to-pink-500 sm:text-4xl">
-          The Story Behind the Lens
+          The Story Behind the Lens: A Glimpse Beyond the Gloss
         </h2>
-        <p className="p-2 mt-6 text-lg leading-8 text-rose-400">
-          Glossy images give way to words. It's more than a blog; it's a
-          window into a soul.
+        <p className="p-2 mt-6 text-lg leading-8 text-rose-300">
+          Images give way to words. It's more than a blog; it's a window into a
+          soul. Here, in the vast tapestry of narratives and snapshots,
+          intricate stories are weaved one post at a time. From the whirlwind of
+          busy streets to the serene whispers of distant shores, this blog
+          transcends the ordinary, inviting you into a realm where imagery and
+          prose dance in harmony.
         </p>
       </div>
       <ul

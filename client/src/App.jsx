@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Route,
   createBrowserRouter,
@@ -38,25 +38,12 @@ const router = createBrowserRouter(
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [loadedLocations, setLoadedLocations] = useState([]);
-  const [currentLocation, setCurrentLocation] = useState(() => {
-    const savedLocation = localStorage.getItem("currentLocation");
-    return savedLocation || "defaultLocation";
-  });
-
-  useEffect(() => {
-    localStorage.setItem("currentLocation", currentLocation);
-  }, [currentLocation]);
 
   return (
     <AppContext.Provider
       value={{
         sidebarOpen,
         setSidebarOpen,
-        loadedLocations,
-        setLoadedLocations,
-        currentLocation,
-        setCurrentLocation,
       }}
     >
       <RouterProvider router={router} />
