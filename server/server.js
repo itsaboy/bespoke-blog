@@ -6,8 +6,8 @@ import path from "path";
 import * as url from "url";
 
 import { userRoutes } from "./routes/user.js";
+import { imagePostRoutes } from "./routes/imagePost.js";
 import { blogPostRoutes } from "./routes/blogPost.js";
-import { upload } from "./utils/awsS3handler.js";
 import { sendFirstImagesToClient, sendImagesToClient } from "./utils/getImages.js"
 
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
@@ -23,11 +23,9 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
 
 app.use("/api/user", userRoutes);
 
-app.use("/api/blogPost", blogPostRoutes);
+app.use("/api/imagePost", imagePostRoutes);
 
-app.post("/api/upload", upload.array("images", 12), (req, res) => {
-  res.status(200).json("Upload success!");
-});
+app.use("/api/blogPost", blogPostRoutes);
 
 app.get("/api/location", sendFirstImagesToClient);
 

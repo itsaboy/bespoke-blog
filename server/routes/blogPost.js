@@ -3,6 +3,7 @@ import {
   createBlogPost,
   getBlogPosts,
   getOneBlogPost,
+  deleteBlogPost,
 } from "../controllers/blogPostController.js";
 import multer from "multer";
 
@@ -14,3 +15,5 @@ blogPostRoutes.post("/create", upload.array("image"), createBlogPost);
 blogPostRoutes.get("/get", getBlogPosts);
 
 blogPostRoutes.get("/get/:postId", getOneBlogPost);
+
+blogPostRoutes.delete("/delete/:postId", deleteBlogPost);

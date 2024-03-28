@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 
-const blogPostSchema = new Schema({
+const imagePostSchema = new Schema({
   title: String,
-  body: String,
+  location: String,
   imageUrls: [String],
   createdAt: { type: Date, default: Date.now },
 });
 
-export const BlogPost = model('BlogPost', blogPostSchema);
+export const ImagePost = model('ImagePost', imagePostSchema);

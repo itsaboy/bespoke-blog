@@ -4,6 +4,8 @@ import { useLogout } from "../hooks/useLogout";
 import { PlusIcon, MinusIcon } from "@heroicons/react/24/outline";
 import NewBlog from "../components/Dashboard/NewBlog";
 import NewImage from "../components/Dashboard/NewImage";
+import DeleteBlog from "../components/Dashboard/DeleteBlog";
+import DeleteImage from "../components/Dashboard/DeleteImage";
 import logoutIcon from "../assets/icons/logout.svg";
 
 const items = [
@@ -48,10 +50,6 @@ export default function Doashboard() {
 
   const { logout } = useLogout();
 
-  const handleCLick = (action) => {
-    setNewAction(action);
-  };
-
   return (
     <>
       {user && user.role === "admin" ? (
@@ -73,7 +71,7 @@ export default function Doashboard() {
                 className="flow-root"
                 onClick={() => setNewAction(item.action)}
               >
-                <div className="relative -m-2 flex items-center space-x-4 rounded-xl p-2 focus-within:ring-2 focus-within:ring-indigo-500 hover:bg-rose-800/80">
+                <div className="relative -m-2 flex items-center space-x-4 rounded-xl p-2 focus-within:ring-2 focus-within:ring-pink-500 hover:bg-rose-800/80">
                   <div
                     className={classNames(
                       item.background,
@@ -102,7 +100,15 @@ export default function Doashboard() {
             ))}
           </ul>
           <div className="my-16 mx-auto max-w-3xl rounded-2xl bg-gradient-to-r from-rose-600 to-rose-800 border-l-2 border-rose-500 shadow-neon shadow-rose-500/60">
-            {newAction === "new blog"? <NewBlog /> : newAction === "new image"? <NewImage /> : null}
+            {newAction === "new blog" ? (
+              <NewBlog />
+            ) : newAction === "new image" ? (
+              <NewImage />
+            ) : newAction === "delete blog" ? (
+              <DeleteBlog />
+            ) : newAction === "delete image" ? (
+              <DeleteImage />
+            ) : null}
           </div>
           <div className="mt-8 flex justify-center items-center">
             <button

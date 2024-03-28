@@ -1,13 +1,12 @@
-import TopImage from "../components/Portfolio/TopImage";
+import TopImage from "../components/TopImage";
 import ContentList from "../components/Portfolio/ContentList";
-import CallToAction from "../components/Portfolio/CallToAction";
+import banner from "../assets/images/banner.webp"
 
 export default function Portfolio() {
   return (
     <>
-      <TopImage />
-      <ContentList />
-      <CallToAction />      
+      <TopImage src={banner} />
+      <ContentList />     
     </>
   );
 }

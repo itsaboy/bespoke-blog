@@ -3,7 +3,6 @@ import about from "../assets/icons/about.svg";
 import portfolio from "../assets/icons/portfolio.svg";
 import blog from "../assets/icons/blog.svg";
 import contact from "../assets/icons/contact.svg";
-import login from "../assets/icons/login.svg";
 
 export const navData = [
   {
@@ -17,8 +16,8 @@ export const navData = [
     icon: about,
   },
   {
-    name: "Portfolio",
-    path: "/portfolio",
+    name: "Gallery",
+    path: "/gallery",
     icon: portfolio,
   },
   {

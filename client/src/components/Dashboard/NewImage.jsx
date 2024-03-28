@@ -2,6 +2,7 @@ import { useState } from "react";
 import { PhotoIcon } from "@heroicons/react/24/outline";
 
 export default function NewImage() {
+  const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
   const [images, setImages] = useState([]);
   const [imagePreviews, setImagePreviews] = useState([]);
@@ -18,26 +19,28 @@ export default function NewImage() {
     setImagePreviews(previewUrls);
   };
 
-  const uploadImagesToServer = async () => {
+  const uploadImagePostToServer = async () => {
     setSubmissionLoading(true);
     const formData = new FormData();
+    formData.append("title", title);
     formData.append("location", location);
     for (let file of images) {
-      formData.append("images", file);
+      formData.append("image", file);
     }
-    console.log(formData);
-
     try {
-      const response = await fetch("/api/upload", {
+      const response = await fetch("/api/imagePost/create", {
         method: "POST",
         body: formData,
       });
       const result = await response.json();
-      setSubmissionMsg(result);
-      setImages([]);
-      setImagePreviews([]);
+      setSubmissionMsg(result.message || "Image post uploaded successfully!");
+      setTitle("");
+      setLocation("");
+      setImages("");
+      setImagePreviews("");
     } catch (error) {
-      console.error("Error uploading images:", error);
+      console.error("Error creating post:", error);
+      setSubmissionMsg("Failed to upload image post.");
     } finally {
       setSubmissionLoading(false);
     }
@@ -45,7 +48,7 @@ export default function NewImage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    uploadImagesToServer();
+    uploadImagePostToServer();
   };
 
   return (
@@ -60,15 +63,35 @@ export default function NewImage() {
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="col-span-full">
               <label
-                htmlFor="about"
+                htmlFor="title"
+                className="block text-sm font-medium leading-6 text-rose-200"
+              >
+                Title
+              </label>
+              <div className="mt-2">
+                <textarea
+                  id="title"
+                  name="title"
+                  rows={1}
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  onChange={(e) => setTitle(e.target.value)}
+                  value={title}
+                  required={true}
+                />
+              </div>
+            </div>
+
+            <div className="col-span-full">
+              <label
+                htmlFor="location"
                 className="block text-sm font-medium leading-6 text-rose-200"
               >
                 Location
               </label>
               <div className="mt-2">
                 <textarea
-                  id="about"
-                  name="about"
+                  id="location"
+                  name="location"
                   rows={1}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   onChange={(e) => setLocation(e.target.value)}

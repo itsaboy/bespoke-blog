@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config({ path: "server/.env" });
-import { BlogPost } from "../models/blogPostModel.js";
+import { ImagePost } from "../models/imagePostModel.js";
 import { S3Client, PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
 import mime from "mime";
 import multer from "multer";
@@ -16,17 +16,15 @@ const s3Client = new S3Client({
 });
 
 const uploadImageToS3 = async (bucketName, file, postTitle) => {
-  const folderName = postTitle.replace(/[^a-zA-Z0-9]/g, "-").toLowerCase();
+  const sanitizedTitle = postTitle.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase();
   const timestamp = Date.now();
-  const originalFilename = file.originalname;
-  const fileExtension = originalFilename.split(".").pop();
-  const newFilename = `${originalFilename
-    .split(".")
-    .slice(0, -1)
-    .join(".")}-${timestamp}.${fileExtension}`;
-  const key = `${folderName}/${newFilename}`;
-  const contentType =
-    mime.getType(file.originalname) || "application/octet-stream";
+  const filename = file.originalname;
+  const extension = mime.getExtension(file.mimetype);
+  const newFilename = `${filename.split('.').slice(0, -1).join('.')}-${timestamp}.${extension}`;
+  const key = `${sanitizedTitle}/${newFilename}`;
+
+  const contentType = mime.getType(file.originalname) || 'application/octet-stream';
+
   const uploadParams = {
     Bucket: bucketName,
     Key: key,
@@ -43,8 +41,8 @@ const uploadImageToS3 = async (bucketName, file, postTitle) => {
   }
 };
 
-export const createBlogPost = async (req, res) => {
-  const { title, body } = req.body;
+export const createImagePost = async (req, res) => {
+  const { title, location } = req.body;
   const imageFiles = req.files;
 
   const imageUrls = await Promise.all(
@@ -54,52 +52,52 @@ export const createBlogPost = async (req, res) => {
   );
 
   try {
-    const blogPost = new BlogPost({
+    const imagePost = new ImagePost({
       title,
-      body,
+      location,
       imageUrls: imageUrls.filter((url) => url !== null),
     });
 
-    await blogPost.save();
+    await imagePost.save();
     res
       .status(201)
-      .json({ message: "Blog post created successfully", blogPost });
+      .json({ message: "Image post created successfully", imagePost });
   } catch (error) {
-    console.error("Error creating blog post:", error);
-    res.status(500).json({ message: "Failed to create blog post" });
+    console.error("Error creating image post:", error);
+    res.status(500).json({ message: "Failed to create image post" });
   }
 };
 
-export const getBlogPosts = async (req, res) => {
+export const getImagePosts = async (req, res) => {
   try {
-    const blogPosts = await BlogPost.find().sort({ createdAt: -1 });
-    res.status(200).json(blogPosts);
+    const imagePosts = await ImagePost.find().sort({ createdAt: -1 });
+    res.status(200).json(imagePosts);
   } catch (error) {
-    console.error("Failed to retrieve blog posts:", error);
-    res.status(500).json({ message: "Failed to retrieve blog posts" });
+    console.error("Failed to retrieve image posts:", error);
+    res.status(500).json({ message: "Failed to retrieve image posts" });
   }
 };
 
-export const getOneBlogPost = async (req, res) => {
+export const getOneImagePost = async (req, res) => {
   const { postId } = req.params;
 
   try {
-    const post = await BlogPost.findById(postId);
+    const post = await ImagePost.findById(postId);
     if (!post) {
-      return res.status(404).json({ message: "Blog post not found" });
+      return res.status(404).json({ message: "Image post not found" });
     }
     res.json(post);
   } catch (error) {
-    console.error("Failed to retrieve the blog post:", error);
-    res.status(500).json({ message: "Failed to retrieve the blog post" });
+    console.error("Failed to retrieve the image post:", error);
+    res.status(500).json({ message: "Failed to retrieve the image post" });
   }
 };
 
-export const deleteBlogPost = async (req, res) => {
+export const deleteImagePost = async (req, res) => {
   const { postId } = req.params;
 
   try {
-    const post = await BlogPost.findById(postId);
+    const post = await ImagePost.findById(postId);
     if (!post) {
       return res.status(404).send("Post not found");
     }
@@ -109,10 +107,10 @@ export const deleteBlogPost = async (req, res) => {
         new DeleteObjectCommand({ Bucket: process.env.BUCKET_NAME, Key: key })
       );
     }
-    await BlogPost.deleteOne({ _id: postId });
-    res.status(200).send("Post deleted successfully");
+    await ImagePost.deleteOne({ _id: postId });
+    res.status(200).send("Images deleted successfully");
   } catch (error) {
-    console.error("Failed to delete the post:", error);
-    res.status(500).send("Failed to delete the post");
+    console.error("Failed to delete the images:", error);
+    res.status(500).send("Failed to delete the images");
   }
 };

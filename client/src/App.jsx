@@ -24,8 +24,8 @@ const router = createBrowserRouter(
     <Route path="/" element={<MainLayout />}>
       <Route index element={<Home />} />,
       <Route path="/about" element={<About />} />,
-      <Route path="/portfolio" element={<Portfolio />} />,
-      <Route path="/gallery" element={<Gallery />} />,
+      <Route path="/gallery" element={<Portfolio />} />,
+      <Route path="/gallery/:postId" element={<Gallery />} />,
       <Route path="/blog" element={<Blog />} />,
       <Route path="/blog/:postId" element={<BlogPost />} />
       <Route path="/contact" element={<Contact />} />,

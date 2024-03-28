@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 function BlogPost() {
@@ -17,6 +17,7 @@ function BlogPost() {
         setPost(data);
       } catch (error) {
         console.error("Error fetching blog post:", error);
+        setError("Failed to load image post.");
       }
     };
 
@@ -30,6 +31,19 @@ function BlogPost() {
   if (!post) {
     return <div>Loading...</div>;
   }
+
+  const renderPostBody = (body) => {
+    return body.split("\n\n").map((paragraph, index) => (
+      <p key={index} className="mb-4 text-pink-200">
+        {paragraph.split("\n").map((line, lineIndex) => (
+          <Fragment key={lineIndex}>
+            {line}
+            {lineIndex < paragraph.split("\n").length - 1 && <br />}
+          </Fragment>
+        ))}
+      </p>
+    ));
+  };
 
   return (
     <div className="bg-transparent py-24 sm:py-32">
@@ -49,16 +63,16 @@ function BlogPost() {
           <div>
             <div className="text-base leading-7 text-gray-700 lg:max-w-lg">
               <p className="p-2 text-base font-semibold leading-7 text-rose-400">
-                {post.createdAt}
+                {new Date(post.createdAt).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
               </p>
-              <h1 className="p-2 mt-4 text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-l from-pink-300 to-pink-500 sm:text-4xl">
+              <h1 className="p-2 text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-l from-pink-300 to-pink-500 sm:text-4xl">
                 {post.title}
               </h1>
-              <div className="max-w-xl">
-                <p className="p-2 mt-6 text-pink-200">
-                  {post.body}
-                </p>
-              </div>
+              <div className="p-2 max-w-xl">{renderPostBody(post.body)}</div>
             </div>
           </div>
         </div>
