@@ -25,19 +25,49 @@ export default function DeleteBlog() {
   }, []);
 
   const deletePost = async (postId) => {
-    try {
-      const response = await fetch(`/api/imagePost/delete/${postId}`, {
-        method: "DELETE",
-        credentials: "include",
-      });
-      if (response.ok) {
+    const attemptDelete = async () => {
+      try {
+        const response = await fetch(`/api/imagePost/delete/${postId}`, {
+          method: "DELETE",
+          credentials: "include",
+        });
+        if (!response.ok) {
+          if (response.status === 401 || response.status === 403) {
+            throw new Error("Authentication required");
+          } else {
+            throw new Error("Failed to delete the post.");
+          }
+        }
         fetchImagePosts();
-      } else {
-        throw new Error("Failed to delete the post.");
+      } catch (error) {
+        console.error("Error during delete operation:", error);
+        if (error.message === "Authentication required") {
+          try {
+            const refreshSuccess = await refreshAccessToken();
+            if (refreshSuccess) {
+              const retryResponse = await fetch(
+                `/api/imagePost/delete/${postId}`,
+                {
+                  method: "DELETE",
+                  credentials: "include",
+                }
+              );
+              if (!retryResponse.ok)
+                throw new Error("Failed to delete the post after retry");
+              fetchImagePosts();
+            } else {
+              console.log("Session expired. Please log in again.");
+            }
+          } catch (retryError) {
+            console.error("Error retrying delete:", retryError);
+          }
+        } else {
+          console.log(error.message);
+        }
       }
-    } catch (error) {
-      console.error("Error deleting the post:", error);
-    }
+    };
+
+    await attemptDelete();
   };
 
   return (

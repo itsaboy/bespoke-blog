@@ -2,6 +2,7 @@ import { useState } from "react";
 import { PhotoIcon } from "@heroicons/react/24/solid";
 import Feedback from "./Feedback";
 import loadingIcon from "../../assets/icons/loading.svg";
+import { refreshAccessToken } from "../../utils/refreshToken";
 
 export default function NewBlog() {
   const [title, setTitle] = useState("");
@@ -30,28 +31,60 @@ export default function NewBlog() {
       formData.append("image", file);
     }
 
-    try {
-      const response = await fetch("/api/blogPost/create", {
-        method: "POST",
-        body: formData,
-        credentials: "include",
-      });
-      const result = await response.json();
-      if (!response.ok) {
-        setSubmissionMsg("Upload failed!");
-      } else {
+    const attemptUpload = async () => {
+      try {
+        const response = await fetch("/api/blogPost/create", {
+          method: "POST",
+          body: formData,
+          credentials: "include",
+        });
+        if (!response.ok) {
+          if (response.status === 401 || response.status === 403) {
+            throw new Error("Authentication required");
+          } else {
+            throw new Error("Upload failed");
+          }
+        }
+        const result = await response.json();
         setSubmissionMsg("Upload succeeded!");
         setTitle("");
         setBody("");
         setImage([]);
         setImagePreview("");
+      } catch (error) {
+        console.error("Error during upload:", error);
+        if (error.message === "Authentication required") {
+          try {
+            const refreshSuccess = await refreshAccessToken();
+            if (refreshSuccess) {
+              const retryResponse = await fetch("/api/blogPost/create", {
+                method: "POST",
+                body: formData,
+                credentials: "include",
+              });
+              if (!retryResponse.ok)
+                throw new Error("Upload failed after retry");
+              setSubmissionMsg("Upload succeeded after retry!");
+              setTitle("");
+              setBody("");
+              setImage([]);
+              setImagePreview("");
+            } else {
+              setSubmissionMsg("Session expired. Please log in again.");
+            }
+          } catch (retryError) {
+            console.error("Error retrying upload:", retryError);
+            setSubmissionMsg(retryError.message);
+          }
+        } else {
+          setSubmissionMsg(error.message);
+        }
+      } finally {
+        setSubmissionLoading(false);
       }
-    } catch (error) {
-      console.error("Error creating post:", error);
-      setSubmissionMsg("Upload failed!");
-    } finally {
-      setSubmissionLoading(false);
-    }
+    };
+
+    await attemptUpload();
   };
 
   const handleSubmit = (e) => {
@@ -159,7 +192,9 @@ export default function NewBlog() {
             Save
           </button>
         )}
-        {submissionMsg && <Feedback msg={submissionMsg} setMsg={setSubmissionMsg} />}
+        {submissionMsg && (
+          <Feedback msg={submissionMsg} setMsg={setSubmissionMsg} />
+        )}
       </div>
     </form>
   );
