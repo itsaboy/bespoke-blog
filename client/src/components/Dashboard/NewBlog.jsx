@@ -27,20 +27,23 @@ export default function NewBlog() {
     for (let file of image) {
       formData.append("image", file);
     }
+
     try {
       const response = await fetch("/api/blogPost/create", {
         method: "POST",
         body: formData,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("user")}`,
-        },
+        credentials: "include",
       });
       const result = await response.json();
-      setSubmissionMsg(result.message || "Blog post uploaded successfully!");
-      setTitle("");
-      setBody("");
-      setImage("");
-      setImagePreview("");
+      if (!response.ok) {
+        setSubmissionMsg("Failed to upload blog post.");
+      } else {
+        setSubmissionMsg(result.message || "Blog post uploaded successfully!");
+        setTitle("");
+        setBody("");
+        setImage([]);
+        setImagePreview("");
+      }
     } catch (error) {
       console.error("Error creating post:", error);
       setSubmissionMsg("Failed to upload blog post.");

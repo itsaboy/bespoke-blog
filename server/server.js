@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config({ path: "server/.env" });
 import express from "express";
+import cookieParser from 'cookie-parser';
 import mongoose from "mongoose";
 import path from "path";
 import * as url from "url";
@@ -12,6 +13,7 @@ const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use((req, res, next) => {
   next();

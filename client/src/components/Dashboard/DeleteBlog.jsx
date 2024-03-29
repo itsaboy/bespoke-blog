@@ -28,10 +28,7 @@ export default function DeleteBlog() {
     try {
       const response = await fetch(`/api/blogPost/delete/${postId}`, {
         method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("user")}`,
-        },
+        credentials: "include",
       });
       if (response.ok) {
         fetchBlogPosts();

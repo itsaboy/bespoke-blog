@@ -25,20 +25,23 @@ export default function NewImage() {
     for (let file of images) {
       formData.append("image", file);
     }
+
     try {
       const response = await fetch("/api/imagePost/create", {
         method: "POST",
         body: formData,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("user")}`,
-        },
+        credentials: "include",
       });
       const result = await response.json();
-      setSubmissionMsg(result.message || "Image post uploaded successfully!");
-      setTitle("");
-      setLocation("");
-      setImages("");
-      setImagePreviews("");
+      if (!response.ok) {
+        setSubmissionMsg("Failed to upload image post.");
+      } else {
+        setSubmissionMsg("Image post uploaded successfully!");
+        setTitle("");
+        setLocation("");
+        setImages([]);
+        setImagePreviews([]);
+      }
     } catch (error) {
       console.error("Error creating post:", error);
       setSubmissionMsg("Failed to upload image post.");

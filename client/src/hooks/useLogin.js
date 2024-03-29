@@ -12,29 +12,33 @@ export const useLogin = () => {
     setLoginLoading(true);
     setLoginError(null);
     const req = "/api/user/login";
-    const res = await fetch(req, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
-    const data = await res.json();
+    try {
+      const res = await fetch(req, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+        credentials: "include",
+      });
+      const data = await res.json();
 
-    if (!res.ok) {
-      setLoginLoading(false);
-      setLoginError(data.error);
-    } else {
-      localStorage.setItem("user", JSON.stringify(data));
-      localStorage.setItem("accessToken", data.accessToken);
-      localStorage.setItem("refreshToken", data.refreshToken);
+      if (!res.ok) {
+        throw new Error(data.error || "Login failed");
+      }
+
       dispatch({
         type: "LOGIN",
         payload: {
-          user: data,
-          accessToken: data.accessToken,
+          user: { username: data.username, role: data.role },
         },
       });
-      setLoginLoading(false);
+
+      localStorage.setItem("user", JSON.stringify(data));
+
       navigate("/");
+    } catch (error) {
+      setLoginError(error.message);
+    } finally {
+      setLoginLoading(false);
     }
   };
 

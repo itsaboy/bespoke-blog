@@ -11,30 +11,28 @@ export const useSignup = () => {
   const signup = async (username, email, password) => {
     setSignupLoading(true);
     setSignupError(null);
-    const req = "/api/user/signup";
-    const res = await fetch(req, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, email, password }),
-    });
-    const data = await res.json();
-
-    if (!res.ok) {
-      setSignupLoading(false);
-      setSignupLoading(data.error);
-    } else {
-      localStorage.setItem("user", JSON.stringify(data));
-      localStorage.setItem("accessToken", data.accessToken);
-      localStorage.setItem("refreshToken", data.refreshToken);
+    try {
+      const res = await fetch("/api/user/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, email, password }),
+        credentials: 'include',
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || 'Signup failed');
+      }
       dispatch({
         type: "LOGIN",
         payload: {
-          user: data, // Explicitly setting the user object
-          accessToken: data.accessToken, // Explicitly setting the accessToken
+          user: data.user,
         },
       });
-      setSignupLoading(false);
       navigate("/");
+    } catch (error) {
+      setSignupError(error.message);
+    } finally {
+      setSignupLoading(false);
     }
   };
 
