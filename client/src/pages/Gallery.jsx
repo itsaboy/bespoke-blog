@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { imageAnimationVariants } from "../data/animData.js";
+import loadingIcon from "../assets/icons/loading.svg";
 
 export default function Gallery() {
   const { postId } = useParams();
@@ -30,7 +31,11 @@ export default function Gallery() {
   }
 
   if (!post) {
-    return <div>Loading...</div>;
+    return (
+      <div className="bg-transparent py-64 mx-auto flex justify-center items-center">
+        <img className="h-64 sm:h-96" src={loadingIcon} />
+      </div>
+    );
   }
 
   return (
@@ -40,26 +45,26 @@ export default function Gallery() {
           {post.imageUrls &&
             post.imageUrls.length > 0 &&
             post.imageUrls.map((url, index) => (
-              <a
+              <motion.a
                 key={index}
                 href={url}
                 className="group"
                 target="_blank"
                 rel="noopener noreferrer"
+                variants={imageAnimationVariants}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true }}
               >
                 <div className="aspect-h-16 aspect-w-9 w-full overflow-hidden rounded-2xl relative shadow-neon shadow-rose-400/60 border-2 border-rose-400">
-                  <motion.img
+                  <img
                     src={url}
                     alt={`Image ${index + 1}`}
-                    variants={imageAnimationVariants}
-                    initial="initial"
-                    whileInView="animate"
-                    viewport={{ once: true }}
                     className="h-full w-full object-cover object-center group-hover:opacity-75"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-rose-400 to-pink-600 opacity-20 rounded-2xl" />
                 </div>
-              </a>
+              </motion.a>
             ))}
         </div>
       </div>

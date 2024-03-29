@@ -6,7 +6,7 @@ import loginIcon from "../../assets/icons/login.svg";
 import logoutIcon from "../../assets/icons/logout.svg";
 import dashboardIcon from "../../assets/icons/dashboard.svg";
 
-export default function SidebarNav() {
+export default function SidebarNav({ setOpen }) {
   const { user } = useAuthContext();
 
   const { logout } = useLogout();
@@ -18,6 +18,7 @@ export default function SidebarNav() {
           key={path.name}
           to={path.path}
           className="px-4 sm:px-10 py-2 bg-gradient-to-l from-pink-200 to-pink-400 border-2 border-pink-400 rounded-2xl shadow-neon shadow-pink-400/60 hover:bg-gradient-to-r hover:shadow-neon hover:shadow-pink-200/60 hover:border-pink-200"
+          onClick={() => setOpen(false)}
         >
           <div className="flex flex-col sm:flex-row justify-between items-center text-sm sm:text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-rose-800">
             {path.name}
@@ -34,6 +35,7 @@ export default function SidebarNav() {
         <NavLink
           to="login"
           className="px-4 sm:px-10 py-2 bg-gradient-to-l from-pink-200 to-pink-400 border-2 border-pink-400 rounded-2xl shadow-neon shadow-pink-400/60 hover:bg-gradient-to-r hover:shadow-neon hover:shadow-pink-200/60 hover:border-pink-200"
+          onClick={() => setOpen(false)}
         >
           <div className="flex flex-col sm:flex-row justify-between items-center text-sm sm:text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-rose-800">
             Login
@@ -61,6 +63,7 @@ export default function SidebarNav() {
         <NavLink
           to="dashboard"
           className="px-4 sm:px-10 py-2 bg-gradient-to-l from-pink-200 to-pink-400 border-2 border-pink-400 rounded-2xl shadow-neon shadow-pink-400/60 hover:bg-gradient-to-r hover:shadow-neon hover:shadow-pink-200/60 hover:border-pink-200"
+          onClick={() => setOpen(false)}
         >
           <div className="flex flex-col sm:flex-row justify-between items-center text-sm sm:text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-rose-800">
             Dashboard

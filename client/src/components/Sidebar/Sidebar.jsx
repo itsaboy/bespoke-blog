@@ -43,7 +43,7 @@ export default function Sidebar() {
                       </div>
                     </div>
                     <div className="relative my-16 flex-1 px-4 sm:px-6">
-                      <SidebarNav />
+                      <SidebarNav setOpen={setSidebarOpen} />
                     </div>
                   </div>
                 </Dialog.Panel>

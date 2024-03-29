@@ -7,6 +7,9 @@ export default {
         neon: "0 0 8px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 40px #39ff14, 0 0 80px #39ff14",
         innerNeon: "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;"
       },
+      fontFamily: {
+        custom: ['custom', 'sans-serif'],
+      },
     },
   },
   plugins: [],

@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import loadingIcon from "../assets/icons/loading.svg";
 
 function BlogPost() {
   const { postId } = useParams();
@@ -29,7 +30,11 @@ function BlogPost() {
   }
 
   if (!post) {
-    return <div>Loading...</div>;
+    return (
+      <div className="bg-transparent py-64 mx-auto flex justify-center items-center">
+        <img className="h-64 sm:h-96" src={loadingIcon} />
+      </div>
+    );
   }
 
   const renderPostBody = (body) => {

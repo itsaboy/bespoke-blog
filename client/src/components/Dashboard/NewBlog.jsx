@@ -115,7 +115,7 @@ export default function NewBlog() {
                 Image
               </label>
               {imagePreview.length > 0 ? (
-                <div className="grid grid-cols-4 gap-2">
+                <div className="flex justify-center">
                   {imagePreview.map((previewUrl, index) => (
                     <img
                       key={index}
