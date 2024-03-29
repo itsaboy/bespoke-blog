@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { PhotoIcon } from "@heroicons/react/24/outline";
+import Feedback from "./Feedback";
+import loadingIcon from "../../assets/icons/loading.svg";
 
 export default function NewImage() {
   const [title, setTitle] = useState("");
@@ -34,9 +36,9 @@ export default function NewImage() {
       });
       const result = await response.json();
       if (!response.ok) {
-        setSubmissionMsg("Failed to upload image post.");
+        setSubmissionMsg("Upload failed!");
       } else {
-        setSubmissionMsg("Image post uploaded successfully!");
+        setSubmissionMsg("Upload succeeded!");
         setTitle("");
         setLocation("");
         setImages([]);
@@ -44,7 +46,7 @@ export default function NewImage() {
       }
     } catch (error) {
       console.error("Error creating post:", error);
-      setSubmissionMsg("Failed to upload image post.");
+      setSubmissionMsg("Upload failed!");
     } finally {
       setSubmissionLoading(false);
     }
@@ -144,14 +146,10 @@ export default function NewImage() {
         </div>
       </div>
 
-      <div className="mt-6 flex items-center justify-end gap-x-6">
+      <div className="mt-6 flex items-center justify-between gap-x-6">
         {submissionLoading ? (
-          <p className="px-4 sm:px-10 py-2 bg-gradient-to-l from-rose-200 to-rose-400 border-2 border-rose-400 rounded-2xl shadow-neon shadow-rose-400/60 hover:bg-gradient-to-r hover:shadow-neon hover:shadow-rose-200/60 hover:border-rose-200 text-pink-800 animate-pulse">
-            Loading...
-          </p>
-        ) : submissionMsg ? (
-          <p className="px-4 sm:px-10 py-2 bg-gradient-to-l from-rose-200 to-rose-400 border-2 border-rose-400 rounded-2xl shadow-neon shadow-rose-400/60 hover:bg-gradient-to-r hover:shadow-neon hover:shadow-rose-200/60 hover:border-rose-200 text-pink-800 animate-pulse">
-            {submissionMsg}
+          <p className="px-4 sm:px-10 py-2 bg-gradient-to-l from-rose-200 to-rose-400 border-2 border-rose-400 rounded-2xl shadow-neon shadow-rose-400/60 text-pink-800 animate-pulse">
+            <img className="h-6" src={loadingIcon} />
           </p>
         ) : (
           <button
@@ -161,6 +159,7 @@ export default function NewImage() {
             Save
           </button>
         )}
+        {submissionMsg && <Feedback msg={submissionMsg} setMsg={setSubmissionMsg} />}
       </div>
     </form>
   );

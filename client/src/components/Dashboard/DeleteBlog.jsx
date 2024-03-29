@@ -1,19 +1,25 @@
 import { useEffect, useState } from "react";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import dayjs from "dayjs";
+import loadingIcon from "../../assets/icons/loading.svg";
 
 export default function DeleteBlog() {
   const [blogPosts, setBlogPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [submissionMsg, setSubmissionMsg] = useState(null);
 
   const fetchBlogPosts = async () => {
     try {
+      setLoading(true);
       const response = await fetch("/api/blogPost/get");
       if (!response.ok) {
-        throw new Error("Failed to fetch blog posts");
+        setSubmissionMsg("Failed to fetch!");
       }
       const data = await response.json();
       setBlogPosts(data);
+      setLoading(false);
+      setSubmissionMsg("Fetch succeeded!");
     } catch (error) {
       console.error("Error fetching blog posts:", error);
       setError(error.message);
@@ -32,8 +38,9 @@ export default function DeleteBlog() {
       });
       if (response.ok) {
         fetchBlogPosts();
+        setSubmissionMsg("Delete succeeded!");
       } else {
-        throw new Error("Failed to delete the post.");
+        setSubmissionMsg("Delete failed!");
       }
     } catch (error) {
       console.error("Error deleting the post:", error);
@@ -42,6 +49,11 @@ export default function DeleteBlog() {
 
   return (
     <>
+      {loading && (
+        <div className="mx-auto flex justify-center items-center">
+          <img className="h-24 sm:h-48 p-2" src={loadingIcon} />
+        </div>
+      )}
       {blogPosts.length > 0 && (
         <ul
           role="list"

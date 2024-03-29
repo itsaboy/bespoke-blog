@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import dayjs from "dayjs";
+import loadingIcon from "../../assets/icons/loading.svg";
 
 export default function DeleteBlog() {
   const [imagePosts, setImagePosts] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const fetchImagePosts = async () => {
     try {
+      setLoading(true);
       const response = await fetch("/api/imagePost/get");
       if (!response.ok) {
         throw new Error("Failed to fetch image posts");
       }
       const data = await response.json();
       setImagePosts(data);
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching image posts:", error);
       setError(error.message);
@@ -42,6 +46,11 @@ export default function DeleteBlog() {
 
   return (
     <>
+      {loading && (
+        <div className="mx-auto flex justify-center items-center">
+          <img className="h-24 sm:h-48 p-2" src={loadingIcon} />
+        </div>
+      )}
       {imagePosts.length > 0 && (
         <ul
           role="list"

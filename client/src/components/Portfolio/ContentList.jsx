@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
+import loadingIcon from "../../assets/icons/loading.svg";
 
 export default function ContentList() {
   const [imagePosts, setImagePosts] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchImagePosts = async () => {
+      setLoading(true);
       try {
         const response = await fetch("/api/imagePost/get");
         if (!response.ok) {
@@ -15,6 +18,7 @@ export default function ContentList() {
         }
         const data = await response.json();
         setImagePosts(data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching image posts:", error);
         setError(error.message);
@@ -36,11 +40,16 @@ export default function ContentList() {
           truly unforgettable.
         </p>
       </div>
-      <ul
-        role="list"
-        className="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 xl:grid-cols-4"
-      >
-        {imagePosts.map((post) => (
+      {loading ? (
+        <div className="mx-auto my-16 flex justify-center">
+          <img className="h-64 sm:h-96" src={loadingIcon} />
+        </div>
+      ) : (
+        <ul
+          role="list"
+          className="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 xl:grid-cols-4"
+        >
+          {imagePosts.map((post) => (
             <article
               key={post.createdAt}
               className="flex flex-col items-start justify-between"
@@ -59,13 +68,14 @@ export default function ContentList() {
                     <Link to={`/gallery/${post._id}`}>{post.title}</Link>
                   </h3>
                   <p className="mt-2 line-clamp-3 text-sm leading-6 text-pink-300">
-                    {dayjs(post.createdAt).format('MMMM D, YYYY')}
+                    {dayjs(post.createdAt).format("MMMM D, YYYY")}
                   </p>
                 </div>
               </div>
             </article>
           ))}
-      </ul>
+        </ul>
+      )}
     </div>
   );
 }
