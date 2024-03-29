@@ -30,13 +30,13 @@ export default function About() {
               <AboutImg7x5 src={about2} alt="" />
             </div>
             <div className="contents lg:col-span-2 lg:col-end-2 lg:ml-auto lg:flex lg:w-[37rem] lg:items-start lg:justify-end lg:gap-x-8">
-              <div className="relative order-first flex w-64 flex-none justify-end self-end lg:w-auto hover:scale-105 ease-in-out duration-300 hover:skew-y-3 hover:-rotate-3 transform-gpu transition-transform">
+              <div className="relative order-first flex w-64 flex-none justify-end self-end lg:w-auto hover:scale-105 ease-in-out duration-300 hover:-skew-y-3 hover:rotate-3 transform-gpu transition-transform">
                 <AboutImg4x3 src={about1} />
               </div>
               <div className="relative flex w-96 flex-auto justify-end lg:w-auto lg:flex-none hover:scale-105 ease-in-out duration-300 hover:skew-y-3 hover:-rotate-3 transform-gpu transition-transform">
                 <AboutImg7x5 src={about3} alt="" />
               </div>
-              <div className="relative hidden sm:block sm:w-0 sm:flex-auto lg:w-auto lg:flex-none hover:scale-105 ease-in-out duration-300 hover:skew-y-3 hover:-rotate-3 transform-gpu transition-transform">
+              <div className="relative hidden sm:block sm:w-0 sm:flex-auto lg:w-auto lg:flex-none hover:scale-105 ease-in-out duration-300 hover:-skew-y-3 hover:rotate-3 transform-gpu transition-transform">
                 <img
                   src={about4}
                   alt=""

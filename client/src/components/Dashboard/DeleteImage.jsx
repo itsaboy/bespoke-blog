@@ -113,7 +113,7 @@ export default function DeleteBlog() {
         </>
       )}
       {imagePosts.length < 1 && (
-        <h3 className="p-6 text-center text-pink-200">
+        <h3 className="p-6 text-center text-2xl text-pink-200">
           There are no saved image posts!
         </h3>
       )}

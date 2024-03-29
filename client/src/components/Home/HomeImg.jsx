@@ -1,6 +1,6 @@
 export default function HomeImg({ src, alt }) {
   return (
-    <div className="relative hover:scale-105 ease-in-out duration-300 hover:skew-y-3 hover:-rotate-3 transform-gpu transition-transform">
+    <div className="relative hover:scale-105 ease-in-out duration-300 hover:-skew-y-3 hover:rotate-3 transform-gpu transition-transform">
       <img
         src={src}
         alt={alt}
