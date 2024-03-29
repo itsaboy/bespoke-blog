@@ -1,4 +1,3 @@
-import React from "react";
 import HomePics from "../components/Home/HomePics";
 
 export default function Home() {

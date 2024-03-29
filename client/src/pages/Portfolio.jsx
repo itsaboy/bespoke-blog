@@ -1,6 +1,6 @@
 import TopImage from "../components/TopImage";
 import ContentList from "../components/Portfolio/ContentList";
-import banner from "../assets/images/banner.webp"
+import banner from "../assets/images/banner1.webp"
 
 export default function Portfolio() {
   return (

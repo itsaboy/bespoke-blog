@@ -56,11 +56,11 @@ export default function Gallery() {
                 whileInView="animate"
                 viewport={{ once: true }}
               >
-                <div className="aspect-h-16 aspect-w-9 w-full overflow-hidden rounded-2xl relative shadow-neon shadow-rose-400/60 border-2 border-rose-400">
+                <div className="aspect-h-16 aspect-w-9 w-full overflow-hidden rounded-2xl relative shadow-neon shadow-rose-400/60 border-2 border-rose-400 hover:scale-105 transition-all ease-in-out duration-500">
                   <img
                     src={url}
                     alt={`Image ${index + 1}`}
-                    className="h-full w-full object-cover object-center group-hover:opacity-75"
+                    className="h-full w-full object-cover object-center"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-rose-400 to-pink-600 opacity-20 rounded-2xl" />
                 </div>

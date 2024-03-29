@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { User } from "../models/userModel.js";
 
 export const userCheck = async (req, res, next) => {
-  const token = req.cookies.accessToken; // Read the token from cookies
+  const token = req.cookies.accessToken;
 
   if (!token) {
     return res.status(401).json({ error: "Unauthorized - Token not provided" });
@@ -22,12 +22,16 @@ export const userCheck = async (req, res, next) => {
       });
     }
 
-    req.user = user; // Attach user to the request for downstream use
-    next(); // Proceed to next middleware or route handler
+    req.user = user;
+    next();
   } catch (error) {
-    console.error(error);
-    return res
-      .status(401)
-      .json({ error: "Unauthorized - JWT malformed or invalid token" });
+    if (error instanceof jwt.TokenExpiredError) {
+      return res.status(401).json({ error: "Unauthorized - Token expired" });
+    } else {
+      console.error(error);
+      return res
+        .status(401)
+        .json({ error: "Unauthorized - JWT malformed or invalid token" });
+    }
   }
 };

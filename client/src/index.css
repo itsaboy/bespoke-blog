@@ -3,8 +3,21 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'custom';
-    src: url('./assets/fonts/DancingScript-VariableFont_wght.ttf');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "custom";
+  src: url("./assets/fonts/DancingScript-VariableFont_wght.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate3d(0, 1, 0, 0deg);
   }
+  50% {
+    transform: rotate3d(0, 1, 0, 25deg);
+    transform: skewX(2deg)
+  }
+  100% {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+}

@@ -61,7 +61,6 @@ function BlogPost() {
                 alt=""
                 className="aspect-[9/16] rounded-xl bg-gray-900/5 object-cover shadow-neon shadow-rose-600/80 border-2 border-rose-400"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-rose-400 to-rose-600 opacity-40 rounded-xl" />
               <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
             </div>
           </div>

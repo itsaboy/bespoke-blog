@@ -10,6 +10,9 @@ export default {
       fontFamily: {
         custom: ['custom', 'sans-serif'],
       },
+      animation: {
+        'shake': 'shake 2s ease-in-out infinite',
+      },
     },
   },
   plugins: [],

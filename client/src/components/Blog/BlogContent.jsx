@@ -57,14 +57,17 @@ export default function Blog() {
               key={post.createdAt}
               className="flex flex-col items-start justify-between"
             >
-              <div className="relative w-full">
-                <img
-                  src={post.imageUrls[0]}
-                  alt=""
-                  className="aspect-[9/16] w-full rounded-2xl bg-gray-100 object-cover shadow-neon shadow-pink-600/80 border-2 border-pink-400"
-                />
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-pink-400 to-pink-600 opacity-40" />
-              </div>
+              <Link to={`/blog/${post._id}`}>
+                <div className="relative w-full hover:animate-shake">
+                  <img
+                    src={post.imageUrls[0]}
+                    alt=""
+                    className="aspect-[9/16] w-full rounded-2xl bg-rose-800 object-cover shadow-neon shadow-pink-600/80 border-2 border-pink-400"
+                  />
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-pink-400 to-pink-600 opacity-40" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-rose-400 to-rose-600 rounded-xl transition-opacity duration-500 opacity-0 hover:opacity-20"/>
+                </div>
+              </Link>
               <div className="max-w-xl mt-5">
                 <div className="group relative">
                   <h3 className="mt-1 text-lg font-semibold leading-6 text-red-400 hover:text-pink-400">
