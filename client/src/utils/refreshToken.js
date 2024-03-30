@@ -1,6 +1,6 @@
 export const refreshAccessToken = async () => {
   try {
-    const response = await fetch("/api/refresh", {
+    const response = await fetch("/api/user/refresh", {
       method: "POST",
       credentials: "include",
     });

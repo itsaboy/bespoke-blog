@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { TrashIcon } from "@heroicons/react/24/outline";
+import { refreshAccessToken } from "../../utils/refreshToken";
 import dayjs from "dayjs";
 
 export default function DeleteBlog() {
