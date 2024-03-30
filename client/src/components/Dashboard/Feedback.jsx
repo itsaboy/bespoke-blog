@@ -11,12 +11,12 @@ export default function Feedback({ msg, setMsg }) {
         <div className="flex-shrink-0">
           {msg === "Upload succeeded!" ||
           msg === "Fetch succeeded!" ||
-          mgs === "Delete succeeded!" ? (
+          msg === "Delete succeeded!" ? (
             <CheckCircleIcon
               className="h-5 w-5 text-rose-600"
               aria-hidden="true"
             />
-          ) : msg === "Upload failed!" || msg === "Fetch failed!" || mgs === "Delete Failed!" ? (
+          ) : msg === "Upload failed!" || msg === "Fetch failed!" || msg === "Delete Failed!" ? (
             <XCircleIcon className="h-5 w-5 text-rose-600" aria-hidden="true" />
           ) : null}
         </div>

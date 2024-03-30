@@ -8,6 +8,7 @@ import * as url from "url";
 import { userRoutes } from "./routes/user.js";
 import { imagePostRoutes } from "./routes/imagePost.js";
 import { blogPostRoutes } from "./routes/blogPost.js";
+import { homePagePostRoutes } from "./routes/homePage.js";
 
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 const app = express();
@@ -26,6 +27,8 @@ app.use("/api/user", userRoutes);
 app.use("/api/imagePost", imagePostRoutes);
 
 app.use("/api/blogPost", blogPostRoutes);
+
+app.use("/api/homePagePost", homePagePostRoutes);
 
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));

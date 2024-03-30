@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
-
 import DashboardActions from "../components/Dashboard/DashboardActions";
 import NewBlog from "../components/Dashboard/NewBlog";
 import NewImage from "../components/Dashboard/NewImage";
+import ChangeHome from "../components/Dashboard/ChangeHome";
 import DeleteBlog from "../components/Dashboard/DeleteBlog";
 import DeleteImage from "../components/Dashboard/DeleteImage";
 import logoutIcon from "../assets/icons/logout.svg";
@@ -30,6 +30,8 @@ export default function Dashboard() {
               <DeleteBlog />
             ) : newAction === "delete image" ? (
               <DeleteImage />
+            ) :  newAction === "change home" ? (
+              <ChangeHome />
             ) : null}
           </div>
           <div className="mt-8 flex justify-center items-center">
