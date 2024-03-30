@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import HomeText from "../components/Home/HomeText";
 import HomePics from "../components/Home/HomePics";
+import { homePage } from "../data/placeholders";
 
 export default function Home() {
   const [homePageContent, setHomePageContent] = useState(null);
@@ -32,26 +34,14 @@ export default function Home() {
       <div className="mx-auto max-w-7xl px-6 pb-32 pt-10 sm:pt-60 lg:px-8 lg:pt-32">
         <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
           <div className="relative w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
-            {!homePageContent && (
-              <>
-                <h2 className="text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-l from-pink-300 to-pink-500 sm:text-5xl z-10 py-8">
-                  Home Page Title
-                </h2>
-                <div className="text-sm sm:text-base leading-8 text-rose-300 sm:max-w-md lg:max-w-none">
-                  Home Page Body
-                </div>
-              </>
-            )}
-            {homePageContent && !loading && (
-              <>
-                <h2 className="text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-l from-pink-300 to-pink-500 sm:text-5xl z-10 py-8">
-                  {homePageContent.title}
-                </h2>
-                <div className="text-sm sm:text-base leading-8 text-rose-300 sm:max-w-md lg:max-w-none">
-                  {homePageContent.body}
-                </div>
-              </>
-            )}
+            {!homePageContent ? (
+              <HomeText title={homePage.title} body={homePage.body} />
+            ) : homePageContent && !loading ? (
+              <HomeText
+                title={homePageContent.title}
+                body={homePageContent.body}
+              />
+            ) : null}
             <div className="mt-10 flex items-center gap-x-6">
               <button
                 href="#"
@@ -67,9 +57,11 @@ export default function Home() {
               </a>
             </div>
           </div>
-          {homePageContent ? (
+          {!homePageContent ? (
+            <HomePics images={homePage.imageUrls} />
+          ) : homePageContent && !loading ? (
             <HomePics images={homePageContent.imageUrls} />
-          ) : <HomePics />}
+          ) : null}
         </div>
       </div>
     </div>

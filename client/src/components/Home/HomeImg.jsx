@@ -8,7 +8,6 @@ export default function HomeImg({ src, alt }) {
       />
       <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-pink-600 opacity-40 rounded-xl" />
       <div className="absolute inset-0 bg-gradient-to-r from-rose-400 to-rose-600 rounded-xl transition-opacity duration-500 opacity-0 hover:opacity-20" />
-      <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
     </div>
   );
 }
