@@ -28,9 +28,23 @@ export default function ChangeHome() {
     for (let file of images) {
       formData.append("image", file);
     }
-    
+
     const attemptUpload = async () => {
       try {
+        const checkResponse = await fetch("/api/homePagePost/check", {
+          method: "GET",
+          credentials: "include",
+        });
+        if (checkResponse.ok) {
+          const { exists, id } = await checkResponse.json();
+          if (exists && id) {
+            await fetch(`/api/homePagePost/delete/${id}`, {
+              method: "DELETE",
+              credentials: "include",
+            });
+          }
+        }
+
         const response = await fetch("/api/homePagePost/create", {
           method: "POST",
           body: formData,
@@ -81,6 +95,7 @@ export default function ChangeHome() {
         setSubmissionLoading(false);
       }
     };
+
     await attemptUpload();
   };
 

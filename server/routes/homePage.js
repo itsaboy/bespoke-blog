@@ -3,6 +3,7 @@ import {
   createHomePagePost,
   getHomePagePosts,
   deleteHomePagePost,
+  checkHomePagePostExists,
 } from "../controllers/homePageController.js";
 import { userCheck } from "../middleware/userCheck.js";
 import multer from "multer";
@@ -10,6 +11,8 @@ import multer from "multer";
 export const homePagePostRoutes = express.Router();
 
 const upload = multer({ storage: multer.memoryStorage() });
+
+homePagePostRoutes.get('/check', checkHomePagePostExists);
 
 homePagePostRoutes.post(
   "/create",
