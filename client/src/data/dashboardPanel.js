@@ -44,6 +44,20 @@ export const action = [
       action: "change blog",
     },
     {
+      title: "Add Contact Info",
+      description: "Track tasks in different stages of your project.",
+      icon: PlusIcon,
+      background: "bg-gradient-to-r from-pink-500 to-pink-700 border-b-2 border-pink-500 border-2",
+      action: "add contact",
+    },
+    {
+      title: "Delete Contact Info",
+      description: "Great for mood boards and inspiration.",
+      icon: MinusIcon,
+      background: "bg-gradient-to-r from-rose-500 to-rose-700 border-b-2 border-rose-500 border-2",
+      action: "delete contact",
+    },
+    {
       title: "Delete a Blog Post",
       description: "Great for mood boards and inspiration.",
       icon: MinusIcon,

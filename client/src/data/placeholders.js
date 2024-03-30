@@ -24,10 +24,33 @@ export const galleryPage = {
   title: "Placeholder for Gallery Page Title",
   body: "Placeholder for Gallery Page Body",
   imageUrls: [placeholder2],
-}
+};
 
 export const blogPage = {
   title: "Placeholder for Blog Page Title",
   body: "Placeholder for Blog Page Body",
   imageUrls: [placeholder2],
-}
+};
+
+export const contactPage = [
+  {
+    _id: 1,
+    name: "Placeholder for service",
+    info: "Placeholder for info",
+  },
+  {
+    _id: 2,
+    name: "Placeholder for service",
+    info: "Placeholder for info",
+  },
+  {
+    _id: 3,
+    name: "Placeholder for service",
+    info: "Placeholder for info",
+  },
+  {
+    _id: 4,
+    name: "Placeholder for service",
+    info: "Placeholder for info",
+  },
+];

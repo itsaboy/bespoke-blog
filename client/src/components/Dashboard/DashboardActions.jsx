@@ -18,7 +18,7 @@ export default function DashboardActions({ setNewAction }) {
       </p>
       <ul
         role="list"
-        className="mt-6 grid grid-cols-1 gap-6 border-b border-t border-pink-200 py-6"
+        className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6 border-b border-t border-pink-200 py-6"
       >
         {action.map((item, itemIdx) => (
           <li

@@ -4,10 +4,12 @@ import { useLogout } from "../hooks/useLogout";
 import DashboardActions from "../components/Dashboard/DashboardActions";
 import NewBlog from "../components/Dashboard/NewBlog";
 import NewImage from "../components/Dashboard/NewImage";
+import NewContact from "../components/Dashboard/NewContact";
 import ChangeHome from "../components/Dashboard/ChangeHome";
 import ChangeAbout from "../components/Dashboard/ChangeAbout";
 import ChangeGallery from "../components/Dashboard/ChangeGallery";
 import ChangeBlog from "../components/Dashboard/ChangeBlog";
+import DeleteContact from "../components/Dashboard/DeleteContact";
 import DeleteBlog from "../components/Dashboard/DeleteBlog";
 import DeleteImage from "../components/Dashboard/DeleteImage";
 import logoutIcon from "../assets/icons/logout.svg";
@@ -41,6 +43,10 @@ export default function Dashboard() {
               <ChangeGallery />
             ) : newAction === "change blog" ? (
               <ChangeBlog />
+            ) : newAction === "add contact" ? (
+              <NewContact />
+            ) : newAction === "delete contact" ? (
+              <DeleteContact />
             ) : null}
           </div>
           <div className="mt-8 flex justify-center items-center">

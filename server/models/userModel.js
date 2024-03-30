@@ -22,7 +22,7 @@ const userSchema = new Schema({
   role: {
     type: String,
     required: true,
-    default: "admin", // VERY IMPORTANT: CHANGE THIS TO "user" ONCE ADMIN IS CREATED
+    default: "user", // VERY IMPORTANT: CHANGE THIS TO "user" ONCE ADMIN IS CREATED
   },
   refreshToken: {
     type: String,
