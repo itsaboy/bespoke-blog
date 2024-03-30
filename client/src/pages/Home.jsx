@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import HomePics from "../components/Home/HomePics";
 
 export default function Home() {
-  const [homePageContent, setHomePageContent] = useState({});
+  const [homePageContent, setHomePageContent] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -32,9 +32,17 @@ export default function Home() {
       <div className="mx-auto max-w-7xl px-6 pb-32 pt-10 sm:pt-60 lg:px-8 lg:pt-32">
         <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
           <div className="relative w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
-            {loading ? (
-              "loading..."
-            ) : (
+            {!homePageContent && (
+              <>
+                <h2 className="text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-l from-pink-300 to-pink-500 sm:text-5xl z-10 py-8">
+                  Home Page Title
+                </h2>
+                <div className="text-sm sm:text-base leading-8 text-rose-300 sm:max-w-md lg:max-w-none">
+                  Home Page Body
+                </div>
+              </>
+            )}
+            {homePageContent && !loading && (
               <>
                 <h2 className="text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-l from-pink-300 to-pink-500 sm:text-5xl z-10 py-8">
                   {homePageContent.title}
@@ -59,7 +67,9 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <HomePics loading={loading} images={homePageContent.imageUrls} />
+          {homePageContent ? (
+            <HomePics images={homePageContent.imageUrls} />
+          ) : <HomePics />}
         </div>
       </div>
     </div>

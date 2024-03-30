@@ -5,6 +5,7 @@ import DashboardActions from "../components/Dashboard/DashboardActions";
 import NewBlog from "../components/Dashboard/NewBlog";
 import NewImage from "../components/Dashboard/NewImage";
 import ChangeHome from "../components/Dashboard/ChangeHome";
+import ChangeAbout from "../components/Dashboard/ChangeAbout";
 import DeleteBlog from "../components/Dashboard/DeleteBlog";
 import DeleteImage from "../components/Dashboard/DeleteImage";
 import logoutIcon from "../assets/icons/logout.svg";
@@ -32,6 +33,8 @@ export default function Dashboard() {
               <DeleteImage />
             ) :  newAction === "change home" ? (
               <ChangeHome />
+            ) :   newAction === "change about" ? (
+              <ChangeAbout />
             ) : null}
           </div>
           <div className="mt-8 flex justify-center items-center">
