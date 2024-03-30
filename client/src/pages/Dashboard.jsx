@@ -7,6 +7,7 @@ import NewImage from "../components/Dashboard/NewImage";
 import ChangeHome from "../components/Dashboard/ChangeHome";
 import ChangeAbout from "../components/Dashboard/ChangeAbout";
 import ChangeGallery from "../components/Dashboard/ChangeGallery";
+import ChangeBlog from "../components/Dashboard/ChangeBlog";
 import DeleteBlog from "../components/Dashboard/DeleteBlog";
 import DeleteImage from "../components/Dashboard/DeleteImage";
 import logoutIcon from "../assets/icons/logout.svg";

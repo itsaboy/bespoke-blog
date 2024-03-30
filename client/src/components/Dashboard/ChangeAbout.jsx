@@ -63,6 +63,7 @@ export default function ChangeAbout() {
         setSubmissionMsg("Upload succeeded!");
         setTitle("");
         setBody("");
+        setSubBody("");
         setImages([]);
         setImagePreviews([]);
       } catch (error) {
@@ -81,6 +82,7 @@ export default function ChangeAbout() {
               setSubmissionMsg("Upload succeeded after retry!");
               setTitle("");
               setBody("");
+              setSubBody("");
               setImages([]);
               setImagePreviews([]);
             } else {
