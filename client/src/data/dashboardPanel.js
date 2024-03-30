@@ -30,6 +30,20 @@ export const action = [
       action: "change about",
     },
     {
+      title: "Edit Gallery Page",
+      description: "Track tasks in different stages of your project.",
+      icon: PlusIcon,
+      background: "bg-gradient-to-r from-pink-500 to-pink-700 border-b-2 border-pink-500 border-2",
+      action: "change gallery",
+    },
+    {
+      title: "Edit Blog Page",
+      description: "Track tasks in different stages of your project.",
+      icon: PlusIcon,
+      background: "bg-gradient-to-r from-pink-500 to-pink-700 border-b-2 border-pink-500 border-2",
+      action: "change blog",
+    },
+    {
       title: "Delete a Blog Post",
       description: "Great for mood boards and inspiration.",
       icon: MinusIcon,

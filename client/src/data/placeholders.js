@@ -19,3 +19,15 @@ export const aboutPage = {
   subBody: "Placeholder for About Page Sub Body",
   imageUrls: [placeholder2, placeholder2, placeholder2, placeholder2],
 };
+
+export const galleryPage = {
+  title: "Placeholder for Gallery Page Title",
+  body: "Placeholder for Gallery Page Body",
+  imageUrls: [placeholder2],
+}
+
+export const blogPage = {
+  title: "Placeholder for Blog Page Title",
+  body: "Placeholder for Blog Page Body",
+  imageUrls: [placeholder2],
+}

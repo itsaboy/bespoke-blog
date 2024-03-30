@@ -10,6 +10,8 @@ import { imagePostRoutes } from "./routes/imagePost.js";
 import { blogPostRoutes } from "./routes/blogPost.js";
 import { homePagePostRoutes } from "./routes/homePage.js";
 import { aboutPagePostRoutes } from "./routes/aboutPage.js";
+import { galleryPagePostRoutes } from "./routes/galleryPage.js";
+import { blogPagePostRoutes } from "./routes/blogPage.js";
 
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 const app = express();
@@ -32,6 +34,10 @@ app.use("/api/blogPost", blogPostRoutes);
 app.use("/api/homePagePost", homePagePostRoutes);
 
 app.use("/api/aboutPagePost", aboutPagePostRoutes);
+
+app.use("/api/galleryPagePost", galleryPagePostRoutes);
+
+app.use("/api/blogPagePost", blogPagePostRoutes);
 
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));

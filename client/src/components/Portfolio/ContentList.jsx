@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import loadingIcon from "../../assets/icons/loading.svg";
 
-export default function ContentList() {
+export default function ContentList({ title, body }) {
   const [imagePosts, setImagePosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -31,13 +31,10 @@ export default function ContentList() {
     <div className="mx-auto mt-16 max-w-7xl px-6 sm:mt-24 lg:px-8">
       <div className="mx-auto max-w-2xl lg:mx-0">
         <h2 className="p-2 text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-l from-pink-300 to-pink-500 sm:text-4xl">
-          Beauty & Grace
+          {title}
         </h2>
         <p className="p-2 mt-6 text-lg leading-8 text-rose-300">
-          Dive into the visual journey of [Model's Name] — where each frame is a
-          story, each look a chapter in a vast, unfolding narrative. Welcome to
-          a place where beauty and storytelling intersect to create something
-          truly unforgettable.
+          {body}
         </p>
       </div>
       {loading ? (

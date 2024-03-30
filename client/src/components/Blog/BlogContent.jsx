@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import loadingIcon from "../../assets/icons/loading.svg";
 
-export default function Blog() {
+export default function Blog({ title, body }) {
   const [blogPosts, setBlogPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -32,15 +32,10 @@ export default function Blog() {
     <div className="mx-auto mt-16 max-w-7xl px-6 sm:mt-24 lg:px-8">
       <div className="mx-auto max-w-2xl lg:mx-0">
         <h2 className="p-2 text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-l from-pink-300 to-pink-500 sm:text-4xl">
-          The Story Behind the Lens: A Glimpse Beyond the Gloss
+          {title}
         </h2>
         <p className="p-2 mt-6 text-lg leading-8 text-rose-300">
-          Images give way to words. It's more than a blog; it's a window into a
-          soul. Here, in the vast tapestry of narratives and snapshots,
-          intricate stories are weaved one post at a time. From the whirlwind of
-          busy streets to the serene whispers of distant shores, this blog
-          transcends the ordinary, inviting you into a realm where imagery and
-          prose dance in harmony.
+          {body}
         </p>
       </div>
       {loading ? (
@@ -65,7 +60,7 @@ export default function Blog() {
                     className="aspect-[9/16] w-full rounded-2xl bg-rose-800 object-cover shadow-neon shadow-pink-600/80 border-2 border-pink-400"
                   />
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-pink-400 to-pink-600 opacity-40" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-rose-400 to-rose-600 rounded-xl transition-opacity duration-500 opacity-0 hover:opacity-20"/>
+                  <div className="absolute inset-0 bg-gradient-to-r from-rose-400 to-rose-600 rounded-xl transition-opacity duration-500 opacity-0 hover:opacity-20" />
                 </div>
               </Link>
               <div className="max-w-xl mt-5">
