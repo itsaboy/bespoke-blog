@@ -5,7 +5,7 @@ import { galleryPage } from "../data/placeholders";
 
 export default function Portfolio() {
   const [galleryPageContent, setGalleryPageContent] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -32,14 +32,17 @@ export default function Portfolio() {
   return (
     <>
       {!galleryPageContent ? (
-        <TopImage image={galleryPage.imageUrls} />
+        <TopImage image={galleryPage.imageUrls} loading={loading} />
       ) : galleryPageContent && !loading ? (
         <TopImage image={galleryPageContent.imageUrls} />
       ) : null}
       {!galleryPageContent ? (
         <ContentList title={galleryPage.title} body={galleryPage.body} />
       ) : galleryPageContent && !loading ? (
-        <ContentList title={galleryPageContent.title} body={galleryPageContent.body} />
+        <ContentList
+          title={galleryPageContent.title}
+          body={galleryPageContent.body}
+        />
       ) : null}
     </>
   );

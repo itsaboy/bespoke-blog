@@ -49,7 +49,7 @@ export default function About() {
             ) : null}
           </div>
           {!aboutPageContent ? (
-            <AboutPics images={aboutPage.imageUrls} />
+            <AboutPics images={aboutPage.imageUrls} loading={loading} />
           ) : aboutPageContent && !loading ? (
             <AboutPics images={aboutPageContent.imageUrls} />
           ) : null}

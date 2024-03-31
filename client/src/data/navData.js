@@ -3,6 +3,13 @@ import about from "../assets/icons/about.svg";
 import portfolio from "../assets/icons/portfolio.svg";
 import blog from "../assets/icons/blog.svg";
 import contact from "../assets/icons/contact.svg";
+import {
+  ChatBubbleBottomCenterTextIcon,
+  DocumentTextIcon,
+  PhotoIcon,
+  TrashIcon,
+  PencilSquareIcon,
+} from "@heroicons/react/24/outline";
 
 export const navData = [
   {
@@ -28,6 +35,6 @@ export const navData = [
   {
     name: "Contact",
     path: "/contact",
-    icon: contact,
+    icon: ChatBubbleBottomCenterTextIcon,
   },
 ];

@@ -2,6 +2,16 @@ import { NavLink } from "react-router-dom";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useLogout } from "../../hooks/useLogout";
 import { navData } from "../../data/navData";
+import {
+  HomeIcon,
+  InformationCircleIcon,
+  ChatBubbleBottomCenterTextIcon,
+  PhotoIcon,
+  PencilSquareIcon,
+  UserMinusIcon,
+  UserPlusIcon,
+  ViewColumnsIcon,
+} from "@heroicons/react/24/outline";
 import loginIcon from "../../assets/icons/login.svg";
 import logoutIcon from "../../assets/icons/logout.svg";
 import dashboardIcon from "../../assets/icons/dashboard.svg";
@@ -22,10 +32,36 @@ export default function SidebarNav({ setOpen }) {
         >
           <div className="flex flex-col sm:flex-row justify-between items-center text-sm sm:text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-rose-800">
             {path.name}
-            <img
-              src={path.icon}
-              className="hidden sm:block h-4 w-4 sm:h-6 sm:w-6 text-rose-800"
-            />
+            {path.name === "Home" && (
+              <HomeIcon
+                className="h-6 w-6 text-rose-600 hidden sm:block"
+                aria-hidden="true"
+              />
+            )}
+            {path.name === "About" && (
+              <InformationCircleIcon
+                className="h-6 w-6 text-rose-600 hidden sm:block"
+                aria-hidden="true"
+              />
+            )}
+            {path.name === "Gallery" && (
+              <PhotoIcon
+                className="h-6 w-6 text-rose-600 hidden sm:block"
+                aria-hidden="true"
+              />
+            )}
+            {path.name === "Blog" && (
+              <PencilSquareIcon
+                className="h-6 w-6 text-rose-600 hidden sm:block"
+                aria-hidden="true"
+              />
+            )}
+            {path.name === "Contact" && (
+              <ChatBubbleBottomCenterTextIcon
+                className="h-6 w-6 text-rose-600 hidden sm:block"
+                aria-hidden="true"
+              />
+            )}
           </div>
         </NavLink>
       ))}
@@ -39,9 +75,9 @@ export default function SidebarNav({ setOpen }) {
         >
           <div className="flex flex-col sm:flex-row justify-between items-center text-sm sm:text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-rose-800">
             Login
-            <img
-              src={loginIcon}
-              className="hidden sm:block h-4 w-4 sm:h-6 sm:w-6 text-rose-800"
+            <UserPlusIcon
+              className="h-6 w-6 text-rose-600 hidden sm:block"
+              aria-hidden="true"
             />
           </div>
         </NavLink>
@@ -52,9 +88,9 @@ export default function SidebarNav({ setOpen }) {
         >
           <div className="flex flex-col sm:flex-row justify-between items-center text-sm sm:text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-rose-800">
             Logout
-            <img
-              src={logoutIcon}
-              className="hidden sm:block h-4 w-4 sm:h-6 sm:w-6 text-rose-800"
+            <UserMinusIcon
+              className="h-6 w-6 text-rose-600 hidden sm:block"
+              aria-hidden="true"
             />
           </div>
         </button>
@@ -67,9 +103,9 @@ export default function SidebarNav({ setOpen }) {
         >
           <div className="flex flex-col sm:flex-row justify-between items-center text-sm sm:text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-rose-800">
             Dashboard
-            <img
-              src={dashboardIcon}
-              className="hidden sm:block h-4 w-4 sm:h-6 sm:w-6 text-rose-800"
+            <ViewColumnsIcon
+              className="h-6 w-6 text-rose-600 hidden sm:block"
+              aria-hidden="true"
             />
           </div>
         </NavLink>

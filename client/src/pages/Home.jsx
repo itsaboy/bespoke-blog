@@ -5,7 +5,7 @@ import { homePage } from "../data/placeholders";
 
 export default function Home() {
   const [homePageContent, setHomePageContent] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function Home() {
             ) : null}
           </div>
           {!homePageContent ? (
-            <HomePics images={homePage.imageUrls} />
+            <HomePics images={homePage.imageUrls} loading={loading} />
           ) : homePageContent && !loading ? (
             <HomePics images={homePageContent.imageUrls} />
           ) : null}
