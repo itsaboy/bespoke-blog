@@ -94,7 +94,7 @@ export default function NewImage() {
   return (
     <form className="p-4 sm:p-16 mx-auto max-w-2xl" onSubmit={handleSubmit}>
       <div className="space-y-12">
-        <div className="border-b border-gray-900/10 pb-12">
+        <div className="border-b border-pink-200/60 pb-12">
           <h3 className="mt-1 text-lg leading-6 text-pink-300">
             Create a new image post
           </h3>

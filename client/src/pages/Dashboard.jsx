@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
+import { UserMinusIcon } from "@heroicons/react/24/outline";
 import DashboardActions from "../components/Dashboard/DashboardActions";
 import NewBlog from "../components/Dashboard/NewBlog";
 import NewImage from "../components/Dashboard/NewImage";
@@ -16,6 +17,7 @@ import logoutIcon from "../assets/icons/logout.svg";
 
 export default function Dashboard() {
   const [newAction, setNewAction] = useState(null);
+  const [open, setOpen] = useState(false);
 
   const { user } = useAuthContext();
 
@@ -32,9 +34,9 @@ export default function Dashboard() {
             ) : newAction === "new image" ? (
               <NewImage />
             ) : newAction === "delete blog" ? (
-              <DeleteBlog />
+              <DeleteBlog open={open} setOpen={setOpen} />
             ) : newAction === "delete image" ? (
-              <DeleteImage />
+              <DeleteImage open={open} setOpen={setOpen} />
             ) : newAction === "change home" ? (
               <ChangeHome />
             ) : newAction === "change about" ? (
@@ -46,7 +48,7 @@ export default function Dashboard() {
             ) : newAction === "add contact" ? (
               <NewContact />
             ) : newAction === "delete contact" ? (
-              <DeleteContact />
+              <DeleteContact open={open} setOpen={setOpen} />
             ) : null}
           </div>
           <div className="mt-8 flex justify-center items-center">
@@ -56,10 +58,7 @@ export default function Dashboard() {
             >
               <div className="flex justify-between items-center text-sm sm:text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-rose-800">
                 Logout
-                <img
-                  src={logoutIcon}
-                  className="hidden sm:block h-4 w-4 sm:h-6 sm:w-6 text-rose-800"
-                />
+                <UserMinusIcon className="h-6 w-6 text-rose-800 hidden sm:block" />
               </div>
             </button>
           </div>

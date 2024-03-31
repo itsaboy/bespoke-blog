@@ -82,7 +82,7 @@ export default function DeleteContact() {
           >
             {contactInfo.map((post) => (
               <li key={post._id} className="relative">
-                <div className="group relative aspect-h-7 aspect-w-10 block w-full overflow-hidden rounded-lg border-rose-950 border-2 hover:border-pink-200 hover:cursor-pointer">
+                <div className="group relative aspect-h-7 aspect-w-10 block w-full overflow-hidden rounded-lg border-rose-950 border-2 hover:border-pink-200">
                   <img src={placeholder} alt="" className="object-cover" />
                   <div className="absolute inset-0 flex flex-col items-center justify-center bg-rose-900 opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="absolute inset-0 flex flex-col items-center justify-center bg-rose-400 opacity-100 group-hover:opacity-0 transition-opacity" />
