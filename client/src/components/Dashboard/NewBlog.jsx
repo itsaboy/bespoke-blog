@@ -95,7 +95,7 @@ export default function NewBlog() {
   };
 
   return (
-    <form className="p-16 mx-auto max-w-2xl" onSubmit={handleSubmit}>
+    <form className="p-4 sm:p-16 mx-auto max-w-2xl" onSubmit={handleSubmit}>
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
           <h3 className="mt-1 text-lg leading-6 text-pink-300">
@@ -150,7 +150,7 @@ export default function NewBlog() {
         </div>
       </div>
 
-      <div className="mt-6 flex items-center justify-between gap-x-6">
+      <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-x-6">
         {submissionLoading ? (
           <p className="px-4 sm:px-10 py-2 bg-gradient-to-l from-rose-200 to-rose-400 border-2 border-rose-400 rounded-2xl shadow-neon shadow-rose-400/60 text-pink-800 animate-pulse">
             <img className="h-6" src={loadingIcon} />
@@ -158,7 +158,7 @@ export default function NewBlog() {
         ) : (
           <button
             type="submit"
-            className="px-4 sm:px-10 py-2 bg-gradient-to-l from-rose-200 to-rose-400 border-2 border-rose-400 rounded-2xl shadow-neon shadow-rose-400/60 hover:bg-gradient-to-r hover:shadow-neon hover:shadow-rose-200/60 hover:border-rose-200 text-pink-800"
+            className="px-4 sm:px-10 py-2 bg-gradient-to-l from-rose-200 to-rose-400 border-2 border-rose-400 rounded-2xl shadow-neon shadow-rose-400/60 hover:bg-gradient-to-r hover:shadow-neon hover:shadow-rose-200/60 hover:border-rose-200 text-pink-800 mb-4 sm:mb-0"
           >
             Save
           </button>

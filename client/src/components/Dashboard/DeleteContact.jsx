@@ -78,32 +78,28 @@ export default function DeleteContact() {
         <>
           <ul
             role="list"
-            className="p-4 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8"
+            className="p-2 sm:p-4 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8"
           >
             {contactInfo.map((post) => (
               <li key={post._id} className="relative">
                 <div className="group relative aspect-h-7 aspect-w-10 block w-full overflow-hidden rounded-lg border-rose-950 border-2 hover:border-pink-200 hover:cursor-pointer">
-                  <img
-                    src={placeholder}
-                    alt=""
-                    className="object-cover"
-                  />
+                  <img src={placeholder} alt="" className="object-cover" />
                   <div className="absolute inset-0 flex flex-col items-center justify-center bg-rose-900 opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="absolute inset-0 flex flex-col items-center justify-center bg-rose-400 opacity-100 group-hover:opacity-0 transition-opacity" />
-                  <button
-                    className="absolute inset-10 z-20"
-                    onClick={() => deletePost(post._id)}
-                  >
-                    <TrashIcon
-                      className="h-16 w-16 text-rose-300"
-                      aria-hidden="true"
-                    />
-                  </button>
                   <div className="absolute inset-0 flex flex-col items-center justify-between p-4 group-hover:justify-around transition-all duration-300">
-                    <p className="truncate text-sm font-medium text-pink-200 self-start mt-2 group-hover:mt-0">
+                    <p className="truncate text-sm font-medium text-pink-200 self-center mt-2 group-hover:mt-0">
                       {post.name}
                     </p>
-                    <p className="truncate text-sm font-medium text-pink-200 self-end mb-2 group-hover:mb-0">
+                    <button
+                      className="z-20"
+                      onClick={() => deletePost(post._id)}
+                    >
+                      <TrashIcon
+                        className="h-10 w-10 sm:h-20 sm:w-20 text-rose-300"
+                        aria-hidden="true"
+                      />
+                    </button>
+                    <p className="truncate text-sm font-medium text-pink-200 self-center mb-2 group-hover:mb-0">
                       {post.info}
                     </p>
                   </div>
