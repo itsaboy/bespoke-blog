@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import loadingIcon from "../../assets/icons/loading.svg";
+import placeholder from "../../assets/images/9x16-placeholder.png";
 
 export default function ContentList({ title, body }) {
   const [imagePosts, setImagePosts] = useState([]);
@@ -33,13 +34,20 @@ export default function ContentList({ title, body }) {
         <h2 className="p-2 text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-l from-pink-300 to-pink-500 sm:text-4xl">
           {title}
         </h2>
-        <p className="p-2 mt-6 text-lg leading-8 text-rose-300">
-          {body}
-        </p>
+        <p className="p-2 mt-6 text-lg leading-8 text-rose-300">{body}</p>
       </div>
       {loading ? (
-        <div className="mx-auto my-16 flex justify-center">
-          <img className="h-64 sm:h-96" src={loadingIcon} />
+        <div className="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 xl:grid-cols-4">
+          <div className="relative">
+            <img
+              className="aspect-[9/16] w-full rounded-2xl object-cover shadow-neon shadow-pink-600/80 border-2 border-pink-400 bg-gray-900/5"
+              src={placeholder}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-rose-600 to-pink-600 opacity-40 rounded-xl" />
+            <div className="absolute inset-0 flex justify-center items-center">
+              <img className="h-24 sm:h-48 w-auto" src={loadingIcon} />
+            </div>
+          </div>
         </div>
       ) : (
         <ul
@@ -59,7 +67,7 @@ export default function ContentList({ title, body }) {
                     className="aspect-[9/16] w-full rounded-2xl bg-rose-800 object-cover shadow-neon shadow-pink-600/80 border-2 border-pink-400"
                   />
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-pink-400 to-pink-600 opacity-40" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-rose-400 to-rose-600 rounded-xl transition-opacity duration-500 opacity-0 hover:opacity-20"/>
+                  <div className="absolute inset-0 bg-gradient-to-r from-rose-400 to-rose-600 rounded-xl transition-opacity duration-500 opacity-0 hover:opacity-20" />
                 </div>
               </Link>
               <div className="max-w-xl mt-5">

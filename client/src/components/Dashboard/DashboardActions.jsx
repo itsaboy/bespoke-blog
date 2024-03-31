@@ -6,7 +6,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function DashboardActions({ setNewAction }) {
+export default function DashboardActions({ newAction, setNewAction }) {
   const { user } = useAuthContext();
   return (
     <>
@@ -26,14 +26,22 @@ export default function DashboardActions({ setNewAction }) {
             className="flow-root"
             onClick={() => setNewAction(item.action)}
           >
-            <div className="relative -m-2 flex items-center space-x-4 rounded-xl p-2 focus-within:ring-2 focus-within:ring-pink-500 hover:bg-rose-800/80">
+            <div
+              className={`relative -m-2 flex items-center space-x-4 rounded-xl p-2 hover:bg-rose-800/80 ${
+                newAction === item.action &&
+                "bg-rose-600 ring-2 ring-pink-500 animate-pulse"
+              }`}
+            >
               <div
                 className={classNames(
                   item.background,
                   "flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-lg"
                 )}
               >
-                <item.icon className="h-6 w-6 text-white" aria-hidden="true" />
+                <item.icon
+                  className="h-6 w-6 text-pink-50"
+                  aria-hidden="true"
+                />
               </div>
               <div>
                 <h3 className="text-sm font-medium text-pink-200">

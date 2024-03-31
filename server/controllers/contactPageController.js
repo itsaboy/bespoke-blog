@@ -30,21 +30,6 @@ export const getContactInfo = async (req, res) => {
   }
 };
 
-// export const getOneContactInfo = async (req, res) => {
-//   const { postId } = req.params;
-
-//   try {
-//     const post = await ContactInfo.findById(postId);
-//     if (!post) {
-//       return res.status(404).json({ message: "Image post not found" });
-//     }
-//     res.json(post);
-//   } catch (error) {
-//     console.error("Failed to retrieve the image post:", error);
-//     res.status(500).json({ message: "Failed to retrieve the image post" });
-//   }
-// };
-
 export const deleteContactInfo = async (req, res) => {
   const { postId } = req.params;
 

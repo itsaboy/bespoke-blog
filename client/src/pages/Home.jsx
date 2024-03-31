@@ -42,20 +42,6 @@ export default function Home() {
                 body={homePageContent.body}
               />
             ) : null}
-            <div className="mt-10 flex items-center gap-x-6">
-              <button
-                href="#"
-                className="px-4 sm:px-10 py-2 bg-gradient-to-l from-pink-200 to-pink-400 border-2 border-pink-400 rounded-2xl shadow-neon shadow-pink-400/60 hover:bg-gradient-to-r hover:shadow-neon hover:shadow-pink-200/60 hover:border-pink-200"
-              >
-                Get started
-              </button>
-              <a
-                href="#"
-                className="text-sm font-semibold leading-6 text-rose-300"
-              >
-                Log in <span aria-hidden="true">→</span>
-              </a>
-            </div>
           </div>
           {!homePageContent ? (
             <HomePics images={homePage.imageUrls} />

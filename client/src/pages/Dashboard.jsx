@@ -25,7 +25,7 @@ export default function Dashboard() {
     <>
       {user && user.role === "admin" ? (
         <div className="pt-32 px-4 overflow-hidden sm:pt-40 pb-24 max-w-5xl mx-auto">
-          <DashboardActions setNewAction={setNewAction} />
+          <DashboardActions newAction={newAction} setNewAction={setNewAction} />
           <div className="my-16 mx-auto max-w-3xl rounded-2xl bg-gradient-to-r from-rose-600 to-rose-800 border-l-2 border-rose-500 shadow-neon shadow-rose-500/60">
             {newAction === "new blog" ? (
               <NewBlog />

@@ -7,6 +7,7 @@ import loadingIcon from "../assets/icons/loading.svg";
 
 export default function Gallery() {
   const { postId } = useParams();
+  const [loading, setLoading] = useState(false);
   const [post, setPost] = useState(null);
   const [error, setError] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -14,6 +15,7 @@ export default function Gallery() {
 
   useEffect(() => {
     const fetchImagePost = async () => {
+      setLoading(true);
       try {
         const response = await fetch(`/api/imagePost/get/${postId}`);
         if (!response.ok) {
@@ -23,6 +25,8 @@ export default function Gallery() {
         setPost(data);
       } catch (error) {
         console.error("Error fetching image post:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -33,7 +37,7 @@ export default function Gallery() {
     return <div>Error: {error}</div>;
   }
 
-  if (!post) {
+  if (!post || loading) {
     return (
       <div className="bg-transparent py-64 mx-auto flex justify-center items-center">
         <img className="h-64 sm:h-96" src={loadingIcon} />

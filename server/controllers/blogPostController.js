@@ -1,7 +1,11 @@
 import dotenv from "dotenv";
 dotenv.config({ path: "server/.env" });
 import { BlogPost } from "../models/blogPostModel.js";
-import { S3Client, PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
+import {
+  S3Client,
+  PutObjectCommand,
+  DeleteObjectCommand,
+} from "@aws-sdk/client-s3";
 import mime from "mime";
 import multer from "multer";
 
@@ -16,17 +20,20 @@ const s3Client = new S3Client({
 });
 
 const uploadImageToS3 = async (bucketName, file, postTitle) => {
-  const folderName = postTitle.replace(/[^a-zA-Z0-9]/g, "-").toLowerCase();
+  const sanitizedTitle = postTitle.replace(/[^a-zA-Z0-9]/g, "-").toLowerCase();
   const timestamp = Date.now();
+  const foldername = "BlogPosts";
   const originalFilename = file.originalname;
   const fileExtension = originalFilename.split(".").pop();
   const newFilename = `${originalFilename
     .split(".")
     .slice(0, -1)
     .join(".")}-${timestamp}.${fileExtension}`;
-  const key = `${folderName}/${newFilename}`;
+    const key = `${foldername}/${sanitizedTitle}/${newFilename}`;
+
   const contentType =
     mime.getType(file.originalname) || "application/octet-stream";
+    
   const uploadParams = {
     Bucket: bucketName,
     Key: key,

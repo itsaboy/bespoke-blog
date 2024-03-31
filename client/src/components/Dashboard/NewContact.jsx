@@ -79,9 +79,8 @@ export default function NewContact() {
     <form className="p-16 mx-auto max-w-2xl" onSubmit={handleSubmit}>
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
-          <p className="mt-1 text-sm leading-6 text-pink-300">
-            This information will be displayed publicly so be careful what you
-            share.
+          <p className="mt-1 text-lg leading-6 text-pink-300">
+            Add your contact info
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -103,6 +102,12 @@ export default function NewContact() {
                   required={true}
                 />
               </div>
+              <p
+                className="mt-2 text-sm text-pink-200"
+                id="image-input-description"
+              >
+                Main domain of the service
+              </p>
             </div>
 
             <div className="col-span-full">
@@ -123,6 +128,12 @@ export default function NewContact() {
                   required={true}
                 />
               </div>
+              <p
+                className="mt-2 text-sm text-pink-200"
+                id="image-input-description"
+              >
+                Your username
+              </p>
             </div>
 
             <div className="col-span-full">
@@ -143,6 +154,12 @@ export default function NewContact() {
                   required={true}
                 />
               </div>
+              <p
+                className="mt-2 text-sm text-pink-200"
+                id="image-input-description"
+              >
+                Link to your profile
+              </p>
             </div>
           </div>
         </div>

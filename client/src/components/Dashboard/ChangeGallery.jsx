@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { PhotoIcon } from "@heroicons/react/24/solid";
 import Feedback from "./Feedback";
+import TitleInput from "./TitleInput";
+import BodyInput from "./BodyInput";
 import loadingIcon from "../../assets/icons/loading.svg";
 import { refreshAccessToken } from "../../utils/refreshToken";
 
@@ -110,50 +112,13 @@ export default function ChangeHome() {
     <form className="p-16 mx-auto max-w-2xl" onSubmit={handleSubmit}>
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
-          <p className="mt-1 text-sm leading-6 text-pink-300">
-            This information will be displayed publicly so be careful what you
-            share.
+          <p className="mt-1 text-lg leading-6 text-pink-300">
+            Edit gallery page content
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <div className="col-span-full">
-              <label
-                htmlFor="title"
-                className="block text-sm font-medium leading-6 text-rose-200"
-              >
-                Title
-              </label>
-              <div className="mt-2">
-                <textarea
-                  id="title"
-                  name="title"
-                  rows={1}
-                  className="block w-full rounded-md px-2 py-1.5 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6 shadow-neon shadow-pink-600/80 border-2 border-pink-400"
-                  onChange={(e) => setTitle(e.target.value)}
-                  value={title}
-                />
-              </div>
-            </div>
-
-            <div className="col-span-full">
-              <label
-                htmlFor="body"
-                className="block text-sm font-medium leading-6 text-rose-200"
-              >
-                Body
-              </label>
-              <div className="mt-2">
-                <textarea
-                  id="body"
-                  name="body"
-                  rows={12}
-                  className="block w-full rounded-md px-2 py-1.5 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-rose-600 sm:text-sm sm:leading-6 shadow-neon shadow-pink-600/80 border-2 border-pink-400"
-                  onChange={(e) => setBody(e.target.value)}
-                  value={body}
-                />
-              </div>
-            </div>
-
+            <TitleInput title={title} setTitle={setTitle} />
+            <BodyInput body={body} setBody={setBody} />
             <div className="col-span-full">
               <label
                 htmlFor="image-input"
@@ -188,6 +153,12 @@ export default function ChangeHome() {
                   </span>
                 </div>
               )}
+              <p
+                className="mt-2 text-sm text-pink-200"
+                id="image-input-description"
+              >
+                Recommended aspect ratio is 16:9
+              </p>
             </div>
           </div>
         </div>

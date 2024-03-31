@@ -22,13 +22,14 @@ const s3Client = new S3Client({
 const uploadImageToS3 = async (bucketName, file, postTitle) => {
   const sanitizedTitle = postTitle.replace(/[^a-zA-Z0-9]/g, "-").toLowerCase();
   const timestamp = Date.now();
+  const foldername = "AboutPage";
   const filename = file.originalname;
   const extension = mime.getExtension(file.mimetype);
   const newFilename = `${filename
     .split(".")
     .slice(0, -1)
     .join(".")}-${timestamp}.${extension}`;
-  const key = `${sanitizedTitle}/${newFilename}`;
+    const key = `${foldername}/${sanitizedTitle}/${newFilename}`;
 
   const contentType =
     mime.getType(file.originalname) || "application/octet-stream";
