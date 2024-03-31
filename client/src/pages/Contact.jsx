@@ -4,29 +4,29 @@ import { contactPage } from "../data/placeholders";
 
 export default function Contact() {
   const [contactPageContent, setContactPageContent] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    const fetchContactPage = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch("/api/contactPage/get");
-        if (!response.ok) {
-          throw new Error("Failed to fetch content");
-        }
-        const data = await response.json();
-        setContactPageContent(data);
-      } catch (error) {
-        console.error("Error fetching content:", error);
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchContactPage = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const response = await fetch("/api/contactPage/get");
+  //       if (!response.ok) {
+  //         throw new Error("Failed to fetch content");
+  //       }
+  //       const data = await response.json();
+  //       setContactPageContent(data);
+  //     } catch (error) {
+  //       console.error("Error fetching content:", error);
+  //       setError(error.message);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchContactPage();
-  }, []);
+  //   fetchContactPage();
+  // }, []);
 
   return (
     <div className="bg-transparent py-24 sm:py-32">
@@ -45,7 +45,7 @@ export default function Contact() {
                 this journey exciting!
               </p>
               {!contactPageContent || contactPageContent.length < 1 ? (
-                <ContactInfo content={contactPage} />
+                <ContactInfo content={contactPage} loading={loading} />
               ) : contactPageContent && !loading ? (
                 <ContactInfo content={contactPageContent} />
               ) : null}

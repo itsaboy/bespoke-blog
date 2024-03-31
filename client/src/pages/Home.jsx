@@ -5,7 +5,7 @@ import { homePage } from "../data/placeholders";
 
 export default function Home() {
   const [homePageContent, setHomePageContent] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
